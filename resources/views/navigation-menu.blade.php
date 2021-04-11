@@ -15,6 +15,15 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('navigation-menus') }}" :active="request()->routeIs('navigation-menus')">
+                        {{ __('Navigation Menus') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                        {{ __('Users') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('user-permissions') }}" :active="request()->routeIs('user-permissions')">
+                        {{ __('User Permissions') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
