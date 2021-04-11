@@ -14,6 +14,7 @@ class NavigationMenuSeeder extends Seeder
      */
     public function run()
     {
+        //dashboard
         NavigationMenu::create([
             'label' => 'dashboard',
             'slug' => 'dashboard',
@@ -21,10 +22,27 @@ class NavigationMenuSeeder extends Seeder
             'type' => 'TopNav',
         ]);
 
+        //users
         NavigationMenu::create([
             'label' => 'users',
             'slug' => 'users',
             'sequence' => '2',
+            'type' => 'TopNav',
+        ]);
+
+        //navigation-menus
+        NavigationMenu::create([
+            'label' => 'navigation-menus',
+            'slug' => 'navigation-menus',
+            'sequence' => '3',
+            'type' => 'TopNav',
+        ]);
+
+        //user-permissions
+        NavigationMenu::create([
+            'label' => 'user-permissions',
+            'slug' => 'user-permissions',
+            'sequence' => '4',
             'type' => 'TopNav',
         ]);
     }
