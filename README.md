@@ -137,6 +137,14 @@ Iniciar os containers dos serviços
 sail up -d
 ```
 
+### Atualizar banco de dados
+
+Atualizar a estrutura do banco do dados:
+
+```shell
+sail artisan migrate
+```
+
 ### Parar os serviços
 
 ```shell
