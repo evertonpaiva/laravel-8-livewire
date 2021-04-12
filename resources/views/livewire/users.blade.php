@@ -18,7 +18,7 @@
                             @if ($data->count())
                                 @foreach ($data as $item)
                                     <tr>
-                                        <td class="px-6 py-2">{{ $item->name }}</td>
+                                        <td class="px-6 py-2">{{ $item->nome }}</td>
                                         <td class="px-6 py-2">{{ $item->email }}</td>
                                         <td class="px-6 py-2">{{ $item->role }}</td>
                                         <td class="px-6 py-2 flex justify-end">
@@ -55,9 +55,9 @@
 
         <x-slot name="content">
             <div class="mt-4">
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input wire:model="name" id="" class="block mt-1 w-full" type="text" />
-                @error('name') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-label for="nome" value="{{ __('Name') }}" />
+                <x-jet-input wire:model="nome" id="" class="block mt-1 w-full" type="text" />
+                @error('nome') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
