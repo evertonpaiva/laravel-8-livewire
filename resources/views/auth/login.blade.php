@@ -16,8 +16,8 @@
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label for="containstitucional" value="{{ __('Conta Institucional') }}" />
+                <x-jet-input id="containstitucional" class="block mt-1 w-full" type="text" name="containstitucional" :value="old('containstitucional')" required autofocus />
             </div>
 
             <div class="mt-4">
@@ -25,7 +25,7 @@
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
+            <div class="block mt-4 hidden">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
@@ -34,7 +34,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="https://sistemas.ufvjm.edu.br/recuperar-senha">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -43,6 +43,13 @@
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
+
+            <div class="flex items-center justify-center mt-10">
+                Primeiro acesso?&nbsp;<a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('Ative sua conta') }}
+                </a>
+            </div>
+
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
