@@ -44,7 +44,9 @@
                 </x-jet-button>
             </div>
 
-            <div class="flex items-center justify-center mt-10">
+            <x-jet-section-border />
+
+            <div class="flex items-center justify-center mt-2">
                 Primeiro acesso?&nbsp;<a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                     {{ __('Ative sua conta') }}
                 </a>
