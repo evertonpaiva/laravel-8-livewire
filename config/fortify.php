@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'username' => 'email',
+    'username' => 'containstitucional',
 
     'email' => 'email',
 
@@ -133,13 +133,13 @@ return [
 
     'features' => [
         Features::registration(),
-        Features::resetPasswords(),
+        // Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),
-        Features::updatePasswords(),
-        Features::twoFactorAuthentication([
-            'confirmPassword' => true,
-        ]),
+        // Features::updatePasswords(),
+        // Features::twoFactorAuthentication([
+        //    'confirmPassword' => true,
+        //]),
     ],
 
 ];
