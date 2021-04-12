@@ -55,8 +55,7 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="nome" value="{{ __('Name') }}" />
-            <div class="mt-1 block w-full">{{ $this->user->nome }}</div>
-            {{--<x-jet-input id="nome" type="text" class="mt-1 block w-full" wire:model.defer="state.nome" autocomplete="nome" />--}}
+            <x-jet-input id="nome" type="text" class="mt-1 block w-full" wire:model.defer="state.nome" autocomplete="nome" />
             <x-jet-input-error for="nome" class="mt-2" />
         </div>
 
