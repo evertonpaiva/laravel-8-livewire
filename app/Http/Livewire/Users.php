@@ -18,7 +18,8 @@ class Users extends Component
      * Put your custom public properties here!
      */
     public $role;
-    public $name;
+    public $nome;
+    public $email;
 
     /**
      * The validation rules
@@ -29,7 +30,8 @@ class Users extends Component
     {
         return [
             'role' => 'required',
-            'name' => 'required',
+            'nome' => 'required',
+            'email' => 'required',
         ];
     }
 
@@ -43,7 +45,8 @@ class Users extends Component
     {
         $data = User::find($this->modelId);
         $this->role = $data->role;
-        $this->name = $data->name;
+        $this->nome = $data->nome;
+        $this->email = $data->email;
     }
 
     /**
@@ -56,7 +59,8 @@ class Users extends Component
     {
         return [
             'role' => $this->role,
-            'name' => $this->name,
+            'nome' => $this->nome,
+            'email' => $this->email,
         ];
     }
 
