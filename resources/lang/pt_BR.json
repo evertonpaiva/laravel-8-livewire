@@ -78,5 +78,8 @@
     "to" : "de",
     "of" : "de",
     "results" : "resultados",
-    "Whoops! Something went wrong." : "Ops! Tivemos um problema."
+    "Whoops! Something went wrong." : "Ops! Tivemos um problema.",
+    "Save" : "Salvar",
+    "Saved." : "Dados salvos.",
+    "Profile Information" : "Informações de Perfil"
 }
