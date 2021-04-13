@@ -14,10 +14,12 @@
         * [Logar no hub](#logar-no-hub)
     * [Instalação](#instalação)
         * [Iniciar os serviços](#iniciar-os-serviços)
+        * [Atualizar banco de dados](#atualizar-banco-de-dados)
         * [Parar os serviços](#parar-os-serviços)
     * [Referências](#referências)
         * [Laravel](#laravel)
         * [Jetstream e Livewire](#jetstream-e-livewire)
+        * [Template Larawind](#template-larawind)
     * [Tutoriais](#tutoriais)
         * [Laravel 8 - Limewire - Building a Simple CMS](#laravel-8---limewire---building-a-simple-cms)
         * [Laravel 8 - Jetstream - CRUD com TDD](#laravel-8---jetstream---crud-com-tdd)
@@ -161,6 +163,9 @@ sail down
 
 [Jetstream e Livewire](https://jetstream.laravel.com/2.x/installation.html)
 
+### Template Larawind
+
+Repositório do template **Larawind**: [github.com/miten5/larawind](https://github.com/miten5/larawind)
 
 ## Tutoriais
 

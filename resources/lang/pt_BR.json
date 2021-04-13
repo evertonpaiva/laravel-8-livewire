@@ -81,5 +81,8 @@
     "Whoops! Something went wrong." : "Ops! Tivemos um problema.",
     "Save" : "Salvar",
     "Saved." : "Dados salvos.",
-    "Profile Information" : "Informações de Perfil"
+    "Profile Information" : "Informações de Perfil",
+    "Browser Sessions" : "Sessão em Navegadores",
+    "Delete Account" : "Apagar Conta",
+    "Logout Other Browser Sessions" : "Sair de Outros Navegadores"
 }
