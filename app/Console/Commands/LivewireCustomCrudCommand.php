@@ -91,7 +91,7 @@ class LivewireCustomCrudCommand extends Command
         $fileOrigin = base_path('/stubs/custom.livewire.crud.stub');
         $fileDestination = base_path('/app/Http/Livewire/' . $this->nameOfTheClass . '.php');
 
-        if($this->file->exists($fileDestination)) {
+        if ($this->file->exists($fileDestination)) {
             $this->info('This class file already exists:' . $this->nameOfTheClass. '.php');
             $this->info('Aborting class file creation');
             return false;
@@ -101,7 +101,8 @@ class LivewireCustomCrudCommand extends Command
         $fileOriginalString = $this->file->get($fileOrigin);
 
         // Replace the strings specified in the array sequentially
-        $replaceFileOriginalString = Str::replaceArray('{{}}',
+        $replaceFileOriginalString = Str::replaceArray(
+            '{{}}',
             [
                 $this->nameOfTheModelClass, // Name of the model class
                 $this->nameOfTheClass, // Name of the class
@@ -130,7 +131,7 @@ class LivewireCustomCrudCommand extends Command
         $fileDestination = base_path('/resources/views/livewire/' . Str::kebab($this->nameOfTheClass)
             . '.blade.php');
 
-        if($this->file->exists($fileDestination)) {
+        if ($this->file->exists($fileDestination)) {
             $this->info('This view file already exists:' . Str::kebab($this->nameOfTheClass). '.blade.php');
             $this->info('Aborting view file creation');
             return false;

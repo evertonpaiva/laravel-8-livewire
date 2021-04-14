@@ -56,8 +56,11 @@ class FortifyServiceProvider extends ServiceProvider
 
             $user = User::where('containstitucional', $loginInfo->containstitucional)->first();
 
-            if ($user) return $user;
-            else false;
+            if ($user) {
+                return $user;
+            } else {
+                false;
+            }
         });
     }
 }
