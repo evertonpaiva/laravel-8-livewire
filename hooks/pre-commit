@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./phpcs.sh
+
+if [ $? -ne 0 ]; then
+  echo "PHP Code Sniffer falhou, commit cancelado! Corrija os erros, adicione os arquivos corrigidos e commite novamente."
+  exit 1 # exit with failure status
+fi
+
