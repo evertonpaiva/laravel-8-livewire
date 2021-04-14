@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ]).browserSync({
     proxy: 'localhost', // your domain test
-    port: 8090 // your port
+    port: process.env.APP_PORT // your port
 });
 
 if (mix.inProduction()) {
