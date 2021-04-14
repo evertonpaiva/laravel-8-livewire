@@ -1,67 +1,82 @@
 <div class="p-6">
 
+    <!-- With actions -->
+    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+        Usuários
+    </h4>
+
     {{-- The data table --}}
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead>
-                            <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Name') }}</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Email') }}</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Role') }}</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @if ($data->count())
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <td class="px-6 py-2">{{ $item->nome }}</td>
-                                        <td class="px-6 py-2">{{ $item->email }}</td>
-                                        <td class="px-6 py-2">{{ $item->role }}</td>
-                                        <td class="px-6 py-2 flex justify-end">
-                                            <x-jet-button wire:click="updateShowModal({{ $item->id }})">
-                                                {{ __('Update') }}
-                                            </x-jet-button>
-                                            <x-jet-danger-button class="ml-2" wire:click="deleteShowModal({{ $item->id }})">
-                                                {{ __('Delete') }}
-                                            </x-jet-button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap" colspan="4">No Results Found</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                <tr
+                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Nome</th>
+                    <th class="px-4 py-3">Email</th>
+                    <th class="px-4 py-3">Conta Institucional</th>
+                    <th class="px-4 py-3">Perfil</th>
+                    <th class="px-4 py-3">Ações</th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                @if ($data->count())
+                    @foreach ($data as $item)
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->nome }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->email }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->containstitucional }}
+                            </td>
+                            <td class="px-4 py-3 text-xs">
+                                @php($cor = ( $item->role == 'admin') ? 'red' : 'green')
+                                <span class="px-2 py-1 font-semibold leading-tight text-{{ $cor }}-700 bg-{{ $cor }}-100 rounded-full dark:bg-{{ $cor }}-700 dark:text-{{ $cor }}-100">
+                                    {{ $item->role }}
+                                </span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <x-edit-icon-button wire:click="updateShowModal({{ $item->id }})" />
+                                    <x-delete-icon-button wire:click="deleteShowModal({{ $item->id }})" />
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3 text-sm" colspan="5">
+                            {{ __('No Results Found') }}
+                        </td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="mt-5">
+    <div class="flex flex-row mt-5">
     {{ $data->links() }}
     </div>
 
     {{-- Modal Form --}}
     <x-jet-dialog-modal wire:model="modalFormVisible">
         <x-slot name="title">
-            {{ __('Create or Update Form') }}
+            {{ __('Atualizar dados') }}
         </x-slot>
 
         <x-slot name="content">
-            <div class="mt-4">
+            <div class="block text-sm">
                 <x-jet-label for="nome" value="{{ __('Name') }}" />
-                <x-jet-input wire:model="nome" id="" class="block mt-1 w-full" type="text" />
+                <x-jet-input wire:model="nome" id="" type="text" />
                 @error('nome') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
-                <select wire:model="role" id="" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                <select wire:model="role" id="" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                     <option value="">-- Select a Role --</option>
                     @foreach(\App\Models\User::userRoleList() as $key => $value)
                         <option value="{{ $key }}">{{ $value }}</option>
@@ -77,13 +92,13 @@
             </x-jet-secondary-button>
 
             @if ($modelId)
-                <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                <x-jet-button wire:click="update" wire:loading.attr="disabled">
                     {{ __('Update') }}
-                </x-jet-danger-button>
+                </x-jet-button>
             @else
-                <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
+                <x-jet-button wire:click="create" wire:loading.attr="disabled">
                     {{ __('Create') }}
-                </x-jet-danger-button>
+                </x-jet-button>
             @endif
         </x-slot>
     </x-jet-dialog-modal>
@@ -91,7 +106,7 @@
     {{-- The Delete Modal --}}
     <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
         <x-slot name="title">
-            {{ __('Delete Modal Title') }}
+            {{ __('Apagar usuário') }}
         </x-slot>
 
         <x-slot name="content">
@@ -104,7 +119,7 @@
             </x-jet-secondary-button>
 
             <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Item') }}
+                {{ __('Apagar usuário') }}
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>

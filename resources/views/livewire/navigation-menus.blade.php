@@ -6,53 +6,57 @@
     </div>
 
     {{-- The data table --}}
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead>
-                        <tr>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Type') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Sequence') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Label') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Url') }}</th>
+    {{-- The data table --}}
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                <tr
+                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">{{ __('Type') }}</th>
+                    <th class="px-4 py-3">{{ __('Sequence') }}</th>
+                    <th class="px-4 py-3">{{ __('Label') }}</th>
+                    <th class="px-4 py-3">{{ __('Url') }}</th>
+                    <th class="px-4 py-3">{{ __('Actions') }}</th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                @if ($data->count())
+                    @foreach ($data as $item)
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->type }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->sequence }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->label }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <a class="text-indigo-600 hover:text-indigo-900"
+                                   target="_blank"
+                                   href="{{ url( $item->slug ) }}">
+                                    {{ $item->slug }}
+                                </a>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <x-edit-icon-button wire:click="updateShowModal({{ $item->id }})" />
+                                    <x-delete-icon-button wire:click="deleteShowModal({{ $item->id }})" />
+                                </div>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @if($data->count())
-                                @foreach($data as $item)
-                                    <tr>
-                                        <td class="px-6 py-2">{{ $item->type }}</td>
-                                        <td class="px-6 py-2">{{ $item->sequence }}</td>
-                                        <td class="px-6 py-2">{{ $item->label }}</td>
-                                        <td class="px-6 py-2">
-                                            <a class="text-indigo-600 hover:text-indigo-900"
-                                               target="_blank"
-                                               href="{{ url( $item->slug ) }}">
-                                                {{ $item->slug }}
-                                            </a>
-                                        </td>
-                                        <td class="px-6 py-2 flex justify-end">
-                                            <x-jet-button wire:click="updateShowModal({{ $item->id }})">
-                                                {{ __('Update') }}
-                                            </x-jet-button>
-                                            <x-jet-danger-button class="ml-2" wire:click="deleteShowModal({{ $item->id }})">
-                                                {{ __('Delete') }}
-                                            </x-jet-danger-button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap" colspan="4">{{ __('No results found') }}</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                    @endforeach
+                @else
+                    <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3 text-sm" colspan="5">
+                            {{ __('No Results Found') }}
+                        </td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -77,13 +81,13 @@
                     <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                         http://localhost:8090/
                     </span>
-                    <input wire:model="slug" class="form-input flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="endereço-url">
+                    <x-jet-input wire:model="slug" placeholder="endereço-url" />
                 </div>
                 @error('slug') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
                 <x-jet-label for="sequence" value="{{ __('Sequence') }}" />
-                <x-jet-input wire:model="sequence" id="sequence" class="block mt-1 w-full" type="text" />
+                <x-jet-input wire:model="sequence" id="sequence" type="text" />
                 @error('sequence') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
