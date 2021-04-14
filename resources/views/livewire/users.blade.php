@@ -1,4 +1,4 @@
-<div class="p-6">
+<div class="p-6 dark:bg-gray-800">
 
     <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
