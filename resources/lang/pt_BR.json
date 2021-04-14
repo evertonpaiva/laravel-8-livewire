@@ -84,5 +84,6 @@
     "Profile Information" : "Informações de Perfil",
     "Browser Sessions" : "Sessão em Navegadores",
     "Delete Account" : "Apagar Conta",
-    "Logout Other Browser Sessions" : "Sair de Outros Navegadores"
+    "Logout Other Browser Sessions" : "Sair de Outros Navegadores",
+    "Are you sure you want to delete this item?" : "Você tem certeza que deseja apagar esse item?"
 }
