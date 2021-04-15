@@ -13,6 +13,7 @@ class Users extends Component
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
     public $modelId;
+    public $searchTerm;
 
     /**
      * Put your custom public properties here!
@@ -84,7 +85,13 @@ class Users extends Component
      */
     public function read()
     {
-        return User::paginate(5);
+        return User::where(function ($sub_query) {
+            $query = '%' . $this->searchTerm . '%';
+
+            $sub_query->where('nome', 'ilike', $query)
+                ->orWhere('email', 'ilike', $query)
+                ->orWhere('containstitucional', 'ilike', $query);
+        })->paginate(10);
     }
 
     /**
