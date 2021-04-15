@@ -5,6 +5,15 @@
         Usuários
     </h4>
 
+    {{-- Search --}}
+    <div class="flex flex-row mt-5 mb-5">
+        <div class="block text-sm">
+            <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
+            <x-jet-input id="searchTerm" wire:model="searchTerm" type="text" wire:model="searchTerm" placeholder="Busca" autofocus />
+            @error('searchTerm') <span class="error">{{ $message }}</span> @enderror
+        </div>
+    </div>
+
     {{-- The data table --}}
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
