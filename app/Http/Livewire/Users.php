@@ -18,9 +18,13 @@ class Users extends Component
     /**
      * Put your custom public properties here!
      */
-    public $role;
+    public $role = 'user';
     public $nome;
     public $email;
+    public $cpf;
+    public $idpessoa;
+    public $containstitucional;
+    public $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
 
     /**
      * The validation rules
@@ -33,6 +37,10 @@ class Users extends Component
             'role' => 'required',
             'nome' => 'required',
             'email' => 'required',
+            'cpf' => 'required',
+            'idpessoa' => 'required',
+            'containstitucional' => 'required',
+            'password' => 'required',
         ];
     }
 
@@ -48,6 +56,10 @@ class Users extends Component
         $this->role = $data->role;
         $this->nome = $data->nome;
         $this->email = $data->email;
+        $this->cpf = $data->cpf;
+        $this->idpessoa = $data->idpessoa;
+        $this->containstitucional = $data->containstitucional;
+        $this->password = $data->password;
     }
 
     /**
@@ -62,6 +74,10 @@ class Users extends Component
             'role' => $this->role,
             'nome' => $this->nome,
             'email' => $this->email,
+            'cpf' => $this->cpf,
+            'idpessoa' => $this->idpessoa,
+            'containstitucional' => $this->containstitucional,
+            'password' => $this->password,
         ];
     }
 
@@ -86,11 +102,11 @@ class Users extends Component
     public function read()
     {
         return User::where(function ($sub_query) {
-            $query = '%' . $this->searchTerm . '%';
+            $query = '%' . trim(strtolower($this->searchTerm)) . '%';
 
-            $sub_query->where('nome', 'ilike', $query)
-                ->orWhere('email', 'ilike', $query)
-                ->orWhere('containstitucional', 'ilike', $query);
+            $sub_query->whereRaw('LOWER(nome) like ?', [$query])
+                ->orWhereRaw('LOWER(email) like ?', [$query])
+                ->orWhereRaw('LOWER(containstitucional) like ?', [$query]);
         })->paginate(10);
     }
 
