@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\NavigationMenu;
 use Livewire\WithPagination;
