@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\UserPermission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class UserPermissionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = UserPermission::class;
 
     /**
      * Define the model's default state.
@@ -22,13 +22,12 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $arrayRoles = ['admin', 'user'];
+        $sentence = $this->faker->sentence(3);
+
         return [
-            'nome' => strtoupper($this->faker->name),
-            'email' => $this->faker->unique()->safeEmail,
-            'containstitucional' => $this->faker->word .'.'. $this->faker->word ,
-            'cpf' => $this->faker->numberBetween(10000000000, 99999999999),
-            'idpessoa' => $this->faker->numberBetween(1, 99999),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => $arrayRoles[rand(0,1)],
+            'route_name' => Str::slug($sentence),
         ];
     }
 
