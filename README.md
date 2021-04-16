@@ -1,5 +1,8 @@
 # Projeto Template de Laravel 8
 
+Projeto template desenvolvido em Laravel 8, para servir de guia de práticas para futuros projetos. 
+Integração com os microsserviços de UFVJM. 
+
 ## Sumário
 
 * [Projeto Template de Laravel 8](#projeto-template-de-laravel-8)
@@ -139,6 +142,18 @@ Iniciar os containers dos serviços
 sail up -d
 ```
 
+### Recontruir os serviços
+
+Caso seja necessário reconstruir a imagem docker e subir os serviços novamente:
+
+```shell
+# parar os servicos
+sail stop
+
+#subir os servicos novamente recriando as imagens
+sail up --build -d
+```
+
 ### Atualizar banco de dados
 
 Atualizar a estrutura do banco do dados:
@@ -206,3 +221,7 @@ Repositório original: [github.com/Laravel-Road/crud-contacts](https://github.co
 
 Erro `  Unable to call lifecycle method [mount] directly on component: [contacts.contact-new]
 ` nos testes, conferir [este post](https://forum.laravel-livewire.com/t/polling-broken-after-laravel-and-livewire-update/3918).
+
+### Drehimself
+
+Repositório original: [github.com/drehimself/lc-livewire-examples](https://github.com/drehimself/lc-livewire-examples)
