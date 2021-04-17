@@ -182,6 +182,12 @@ sail down
 
 Repositório do template **Larawind**: [github.com/miten5/larawind](https://github.com/miten5/larawind)
 
+### Laravel IDE Helper
+
+Arquivos para melhorar o autocomplete da IDE:
+
+[Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
+
 ## Tutoriais
 
 ### Laravel 8 - Limewire - Building a Simple CMS
