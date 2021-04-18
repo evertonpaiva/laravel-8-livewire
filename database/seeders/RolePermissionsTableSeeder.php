@@ -22,7 +22,9 @@ class RolePermissionsTableSeeder extends Seeder
 
         // Permissoes para perfil Usuario
         $rolePermissions['Usuário'] = [
-            0 => 'navigation-menu.list'
+            0 => 'dashboard.list',
+            1 => 'navigation-menu.list',
+            2 => 'logout.do',
         ];
 
         foreach ($rolePermissions as $key => $value) {

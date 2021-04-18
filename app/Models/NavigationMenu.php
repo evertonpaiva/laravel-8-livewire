@@ -14,12 +14,13 @@ class NavigationMenu extends Model
         'slug',
         'sequence',
         'type',
-        'icon'
+        'icon',
+        'permission'
     ];
 
     public static function getSidebarMenuItens()
     {
-        return static::select('label', 'slug', 'icon')
+        return static::select('label', 'slug', 'icon', 'permission')
             ->where('type', 'like', 'SidebarNav')
             ->orderBy('sequence')
             ->get();

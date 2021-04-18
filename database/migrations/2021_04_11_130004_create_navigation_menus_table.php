@@ -20,6 +20,7 @@ class CreateNavigationMenusTable extends Migration
             $table->string('label');
             $table->string('slug');
             $table->string('icon');
+            $table->string('permission');
             $table->timestamps();
         });
     }

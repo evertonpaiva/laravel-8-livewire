@@ -21,6 +21,7 @@ class NavigationMenuSeeder extends Seeder
             'sequence' => '1',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-home',
+            'permission' => 'dashboard.list',
         ]);
 
         //users
@@ -30,6 +31,7 @@ class NavigationMenuSeeder extends Seeder
             'sequence' => '2',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-users',
+            'permission' => 'user.list',
         ]);
 
         //navigation-menus
@@ -39,6 +41,7 @@ class NavigationMenuSeeder extends Seeder
             'sequence' => '3',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-bars',
+            'permission' => 'navigation-menu.list',
         ]);
 
         //user-permissions
@@ -48,6 +51,7 @@ class NavigationMenuSeeder extends Seeder
             'sequence' => '4',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-user-lock',
+            'permission' => 'user-permission.list',
         ]);
 
         //logout
@@ -57,6 +61,7 @@ class NavigationMenuSeeder extends Seeder
             'sequence' => '5',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-sign-out-alt',
+            'permission' => 'logout.do',
         ]);
     }
 }

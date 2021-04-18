@@ -15,6 +15,8 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
+            'dashboard.list',
+
             'user.list',
             'user.create',
             'user.edit',
@@ -29,6 +31,8 @@ class PermissionTableSeeder extends Seeder
             'navigation-menu.create',
             'navigation-menu.edit',
             'navigation-menu.delete',
+
+            'logout.do',
         ];
 
         foreach ($permissions as $permission) {

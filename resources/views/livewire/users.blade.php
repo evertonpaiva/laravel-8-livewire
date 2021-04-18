@@ -1,15 +1,8 @@
 <div class="p-6 dark:bg-gray-800">
 
-    <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
         Usuários
     </h4>
-
-    <ul>
-        @foreach(\App\Models\NavigationMenu::getSidebarMenuItens() as $item)
-            <i class="{{ $item->icon }}"></i><li>{{ $item->label }} - {{ $item->slug }}</li>
-        @endforeach
-    </ul>
 
     {{-- Search --}}
     <div class="flex flex-row mt-5 mb-5">
