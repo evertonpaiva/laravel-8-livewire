@@ -17,16 +17,23 @@ Integração com os microsserviços de UFVJM.
         * [Logar no hub](#logar-no-hub)
     * [Instalação](#instalação)
         * [Iniciar os serviços](#iniciar-os-serviços)
+        * [Recontruir os serviços](#recontruir-os-serviços)
         * [Atualizar banco de dados](#atualizar-banco-de-dados)
         * [Parar os serviços](#parar-os-serviços)
     * [Referências](#referências)
         * [Laravel](#laravel)
         * [Jetstream e Livewire](#jetstream-e-livewire)
         * [Template Larawind](#template-larawind)
+        * [Laravel IDE Helper](#laravel-ide-helper)
+        * [Spatie - Laravel Permission](#spatie---laravel-permission)
+            * [Criar usuário admin:](#criar-usuário-admin)
+        * [Laravel Eloquent Query Cache](#laravel-eloquent-query-cache)
+        * [Rebrow - Python-Flask-based Browser for Redis Content](#rebrow---python-flask-based-browser-for-redis-content)
     * [Tutoriais](#tutoriais)
         * [Laravel 8 - Limewire - Building a Simple CMS](#laravel-8---limewire---building-a-simple-cms)
         * [Laravel 8 - Jetstream - CRUD com TDD](#laravel-8---jetstream---crud-com-tdd)
             * [Erros](#erros)
+        * [Drehimself](#drehimself)
 
 ### Pré-requisitos
 
