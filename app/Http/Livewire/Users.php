@@ -101,13 +101,13 @@ class Users extends Component
      */
     public function read()
     {
-        return User::where(function ($sub_query) {
-            $query = '%' . trim(strtolower($this->searchTerm)) . '%';
+        $query = '%' . trim($this->searchTerm) . '%';
 
-            $sub_query->whereRaw('LOWER(nome) like ?', [$query])
-                ->orWhereRaw('LOWER(email) like ?', [$query])
-                ->orWhereRaw('LOWER(containstitucional) like ?', [$query]);
-        })->paginate(10);
+        return User::where('nome', 'ilike', $query)
+            ->orWhere('email', 'ilike', $query)
+            ->orWhere('containstitucional', 'ilike', $query)
+            ->orderBy('nome')
+            ->paginate(10);
     }
 
     /**
