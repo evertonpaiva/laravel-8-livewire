@@ -62,4 +62,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * The list of user roles
+     *
+     * @return string[]
+     */
+    public static function userRoleList()
+    {
+        return [
+            'Admin',
+            'Usuário',
+        ];
+    }
 }
