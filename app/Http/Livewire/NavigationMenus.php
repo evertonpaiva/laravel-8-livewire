@@ -18,6 +18,8 @@ class NavigationMenus extends Component
     public $slug;
     public $sequence = 1;
     public $type = 'SidebarNav';
+    public $icon;
+    public $permission;
 
     /**
      * The validation rules.
@@ -30,6 +32,8 @@ class NavigationMenus extends Component
             'slug' => 'required',
             'sequence' => 'required',
             'type' => 'required',
+            'icon' => 'required',
+            'permission' => 'required',
         ];
     }
 
@@ -121,6 +125,8 @@ class NavigationMenus extends Component
         $this->slug = $data->slug;
         $this->type = $data->type;
         $this->sequence = $data->sequence;
+        $this->icon = $data->icon;
+        $this->permission = $data->permission;
     }
 
     /**
@@ -135,7 +141,9 @@ class NavigationMenus extends Component
           'label' => $this->label,
           'slug' => $this->slug,
           'sequence' => $this->sequence,
-          'type' => $this->type
+          'type' => $this->type,
+          'icon' => $this->icon,
+          'permission' => $this->permission,
         ];
     }
 

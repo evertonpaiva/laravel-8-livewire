@@ -16,10 +16,14 @@ class NavigationMenusTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     /** @test */
     public function navigation_menu_page_contains_navigation_menu_component()
     {
-        $this->actingAs($user = User::factory(['role' => 'admin'])->create());
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
 
         $this->get('/navigation-menus')
             ->assertSeeLivewire('navigation-menus');
@@ -30,7 +34,9 @@ class NavigationMenusTest extends TestCase
      */
     public function canCreateNavigationMenu()
     {
-        $this->actingAs($user = User::factory()->create());
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
 
         $navigationMenuFake = NavigationMenu::factory()->make();
 
@@ -39,6 +45,8 @@ class NavigationMenusTest extends TestCase
             ->set('type', $navigationMenuFake->type)
             ->set('label', $navigationMenuFake->label)
             ->set('slug', $navigationMenuFake->slug)
+            ->set('icon', $navigationMenuFake->icon)
+            ->set('permission', $navigationMenuFake->permission)
             ->call('create');
 
         $this->assertDatabaseHas('navigation_menus', $navigationMenuFake->getAttributes());
@@ -49,7 +57,9 @@ class NavigationMenusTest extends TestCase
      */
     public function checkRequiredFieldsCreateNavigationMenus()
     {
-        $this->actingAs(User::factory()->create());
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
 
         Livewire::test(NavigationMenus::class)
             ->call('create')

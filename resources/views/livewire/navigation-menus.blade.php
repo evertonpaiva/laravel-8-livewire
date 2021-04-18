@@ -17,6 +17,8 @@
                     <th class="px-4 py-3">{{ __('Sequence') }}</th>
                     <th class="px-4 py-3">{{ __('Label') }}</th>
                     <th class="px-4 py-3">{{ __('Url') }}</th>
+                    <th class="px-4 py-3">{{ __('Ícone') }}</th>
+                    <th class="px-4 py-3">{{ __('Permissão') }}</th>
                     <th class="px-4 py-3">{{ __('Actions') }}</th>
                 </tr>
                 </thead>
@@ -39,6 +41,12 @@
                                    href="{{ url( $item->slug ) }}">
                                     {{ $item->slug }}
                                 </a>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <i class="{{ $item->icon }}"></i>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $item->permission }}
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">

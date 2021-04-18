@@ -31,6 +31,7 @@ class NavigationMenuFactory extends Factory
             'label' =>  $sentence,
             'slug' => Str::slug($sentence),
             'icon' => 'fas fa-home',
+            'permission' => $this->faker->word,
         ];
     }
 
