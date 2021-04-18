@@ -1,11 +1,12 @@
 <div class="p-6 dark:bg-gray-800">
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
+        @can('navigation-menu.create')
         <x-jet-button wire:click="createShowModal">
             {{ __('Create') }}
         </x-jet-button>
+        @endcan
     </div>
 
-    {{-- The data table --}}
     {{-- The data table --}}
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
@@ -50,8 +51,13 @@
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
+                                    @can('navigation-menu.edit')
                                     <x-edit-icon-button wire:click="updateShowModal({{ $item->id }})" />
+                                    @endcan
+
+                                    @can('navigation-menu.delete')
                                     <x-delete-icon-button wire:click="deleteShowModal({{ $item->id }})" />
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
@@ -106,6 +112,16 @@
                     <option value="TopNav">TopNav</option>
                 </select>
             </div>
+            <div class="mt-4">
+                <x-jet-label for="icon" value="{{ __('Ícone') }}" />
+                <x-jet-input wire:model="icon" id="icon" type="text" />
+                @error('icon') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="permission" value="{{ __('Permissão') }}" />
+                <x-jet-input wire:model="permission" id="permission" type="text" />
+                @error('permission') <span class="error">{{ $message }}</span> @enderror
+            </div>
         </x-slot>
 
         <x-slot name="footer">
@@ -114,13 +130,17 @@
             </x-jet-secondary-button>
 
             @if ($modelId)
+                @can('navigation-menu.create')
                 <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
                     {{ __('Update') }}
                 </x-jet-button>
+                @endcan
             @else
+                @can('navigation-menu.edit')
                 <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
                     {{ __('Create') }}
                 </x-jet-button>
+                @endcan
             @endif
 
         </x-slot>
@@ -129,11 +149,11 @@
     {{-- The Delete Modal --}}
     <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
         <x-slot name="title">
-            {{ __('Delete Page') }}
+            {{ __('Apagar item de navegação') }}
         </x-slot>
 
         <x-slot name="content">
-            {{ __('Are you sure you want to delete this navigation item?') }}
+            {{ __('Tem certeza que deseja apagar esse item de navegação?') }}
         </x-slot>
 
         <x-slot name="footer">
@@ -142,7 +162,7 @@
             </x-jet-secondary-button>
 
             <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Navigation Item') }}
+                {{ __('Apagar item de navegação') }}
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
