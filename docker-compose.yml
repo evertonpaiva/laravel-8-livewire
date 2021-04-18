@@ -23,6 +23,7 @@ services:
             - sail
         depends_on:
             - pgsql
+            - redis
     pgsql:
         image: postgres:13
         restart: always
@@ -40,6 +41,28 @@ services:
             - sail
         healthcheck:
           test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+    redis:
+      image: 'redis:alpine'
+      restart: always
+      container_name: laravel_dds_redis
+      ports:
+        - '${FORWARD_REDIS_PORT:-6379}:6379'
+      volumes:
+        - 'sailredis:/data'
+      networks:
+        - sail
+      healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+    rebrow:
+      image: 'marian/rebrow'
+      restart: always
+      container_name: laravel_dds_redis_ui
+      ports:
+        - '${FORWARD_REDIS_UI_PORT:-8091}:5001'
+      networks:
+        - sail
+      depends_on:
+        - redis
     mailhog:
         image: 'mailhog/mailhog:latest'
         restart: always
@@ -55,3 +78,5 @@ networks:
 volumes:
     sailpgsql:
         driver: local
+    sailredis:
+      driver: local
