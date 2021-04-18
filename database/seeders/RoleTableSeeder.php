@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class RoleTableSeeder extends Seeder
 {
@@ -14,13 +15,10 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            'Admin',
-            'Usuário',
-        ];
+        $roles = User::userRoleList();
 
-        foreach ($roles as $role) {
-            Role::create(['name' => $role]);
+        foreach ($roles as $key => $value) {
+            Role::create(['name' => $value]);
         }
     }
 }
