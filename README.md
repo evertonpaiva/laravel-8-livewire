@@ -207,6 +207,18 @@ $user = \App\Models\User::where('containstitucional', 'everton.paiva')->first();
 $user->assignRole('Admin');
 ```
 
+### Laravel Eloquent Query Cache
+
+Adiciona as funcionalidades de cache diretamente a nível de Eloquent, usando cache nas consultas de banco de dados.
+
+[github.com/renoki-co/laravel-eloquent-query-cache](https://github.com/renoki-co/laravel-eloquent-query-cache)
+
+### Rebrow - Python-Flask-based Browser for Redis Content
+
+Ferramenta gráfica para visualização do conteúdo do Redis
+
+[github.com/marians/rebrow](https://github.com/marians/rebrow)
+
 ## Tutoriais
 
 ### Laravel 8 - Limewire - Building a Simple CMS
