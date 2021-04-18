@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "spatie/laravel-permission": "^4.0",
         "ufvjm/graphql-client": "^0.0.11"
     },
     "require-dev": {
@@ -54,8 +55,7 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta",
-            "@php artisan ide-helper:models"
+            "@php artisan ide-helper:meta"
         ]
     },
     "extra": {

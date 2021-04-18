@@ -49,11 +49,18 @@
                             </button>
                         </form>
 
-                        <p class="mt-4">
-                            <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="https://sistemas.ufvjm.edu.br/recuperar-senha">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        </p>
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="https://sistemas.ufvjm.edu.br/recuperar-senha">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            </div>
+                            <div>
+                                <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="{{ route('register') }}">
+                                    {{ __('Ainda não tem cadastro?') }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

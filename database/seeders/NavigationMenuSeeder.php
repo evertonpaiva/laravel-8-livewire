@@ -16,34 +16,47 @@ class NavigationMenuSeeder extends Seeder
     {
         //dashboard
         NavigationMenu::create([
-            'label' => 'dashboard',
+            'label' => 'Painel',
             'slug' => 'dashboard',
             'sequence' => '1',
-            'type' => 'TopNav',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-home',
         ]);
 
         //users
         NavigationMenu::create([
-            'label' => 'users',
+            'label' => 'Usuários',
             'slug' => 'users',
             'sequence' => '2',
-            'type' => 'TopNav',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-users',
         ]);
 
         //navigation-menus
         NavigationMenu::create([
-            'label' => 'navigation-menus',
+            'label' => 'Menus de navegação',
             'slug' => 'navigation-menus',
             'sequence' => '3',
-            'type' => 'TopNav',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-bars',
         ]);
 
         //user-permissions
         NavigationMenu::create([
-            'label' => 'user-permissions',
+            'label' => 'Permissões por perfil',
             'slug' => 'user-permissions',
             'sequence' => '4',
-            'type' => 'TopNav',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-user-lock',
+        ]);
+
+        //logout
+        NavigationMenu::create([
+            'label' => 'Sair',
+            'slug' => 'logout',
+            'sequence' => '5',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-sign-out-alt',
         ]);
     }
 }

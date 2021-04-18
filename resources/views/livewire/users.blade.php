@@ -5,6 +5,12 @@
         Usuários
     </h4>
 
+    <ul>
+        @foreach(\App\Models\NavigationMenu::getSidebarMenuItens() as $item)
+            <i class="{{ $item->icon }}"></i><li>{{ $item->label }} - {{ $item->slug }}</li>
+        @endforeach
+    </ul>
+
     {{-- Search --}}
     <div class="flex flex-row mt-5 mb-5">
         <div class="block text-sm">
@@ -87,7 +93,7 @@
                 <x-jet-label for="role" value="{{ __('Role') }}" />
                 <select wire:model="role" id="" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                     <option value="">-- Select a Role --</option>
-                    @foreach(\App\Models\User::userRoleList() as $key => $value)
+                    @foreach(\Spatie\Permission\Models\Role::all() as $key => $value)
                         <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                 </select>

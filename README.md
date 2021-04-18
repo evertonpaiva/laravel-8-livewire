@@ -188,6 +188,25 @@ Arquivos para melhorar o autocomplete da IDE:
 
 [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper)
 
+### Spatie - Laravel Permission
+
+Instalação e configuração do [spatie/laravel-permission](https://spatie.be/docs/laravel-permission/v4/installation-laravel)
+
+#### Criar usuário admin:
+
+Substituir o valor da propriedade **containstitucional**:
+
+```shell
+# acessar o tinker
+sail tinker
+
+# recuperar o usuario
+$user = \App\Models\User::where('containstitucional', 'everton.paiva')->first();
+
+# adicionar perfil no usuario
+$user->assignRole('Admin');
+```
+
 ## Tutoriais
 
 ### Laravel 8 - Limewire - Building a Simple CMS

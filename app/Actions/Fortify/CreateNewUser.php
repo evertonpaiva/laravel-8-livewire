@@ -35,7 +35,7 @@ class CreateNewUser implements CreatesNewUsers
         $authContaInstitucional = new AuthContaInstitucional();
         $dados = $authContaInstitucional->logarContaInstitucional($loginInfo);
 
-        return User::create([
+        $user = User::create([
             'nome' => $dados['nome'],
             'email' => $input['email'],
             'containstitucional' => $input['containstitucional'],
@@ -43,5 +43,10 @@ class CreateNewUser implements CreatesNewUsers
             'idpessoa' => $dados['idpessoa'],
             'password' => Hash::make(''),
         ]);
+
+        //Perfil de usuário padrão do sistema
+        $user->assignRole('Usuário');
+
+        return $user;
     }
 }

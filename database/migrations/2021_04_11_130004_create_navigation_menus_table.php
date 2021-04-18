@@ -19,6 +19,7 @@ class CreateNavigationMenusTable extends Migration
             $table->enum('type', ['SidebarNav', 'TopNav']);
             $table->string('label');
             $table->string('slug');
+            $table->string('icon');
             $table->timestamps();
         });
     }

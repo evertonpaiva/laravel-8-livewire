@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\NavigationMenuSeeder;
-use Database\Seeders\UserPermissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +17,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             NavigationMenuSeeder::class,
-            UserPermissionSeeder::class,
+            RoleTableSeeder::class,
+            PermissionTableSeeder::class,
+            RolePermissionsTableSeeder::class,
         ]);
     }
 }
