@@ -41,10 +41,12 @@
                                 {{ $item->containstitucional }}
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                @php($cor = ( $item->role == 'admin') ? 'red' : 'green')
-                                <span class="px-2 py-1 font-semibold leading-tight text-{{ $cor }}-700 bg-{{ $cor }}-100 rounded-full dark:bg-{{ $cor }}-700 dark:text-{{ $cor }}-100">
-                                    {{ $item->role }}
+                                @foreach($item->getRoleNames() as $role)
+                                    @php($cor = ( $role == 'Admin') ? 'red' : 'green')
+                                    <span class="mr-2 px-2 py-1 font-semibold leading-tight text-{{ $cor }}-700 bg-{{ $cor }}-100 rounded-full dark:bg-{{ $cor }}-700 dark:text-{{ $cor }}-100">
+                                    {{ $role }}
                                 </span>
+                                @endforeach
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
