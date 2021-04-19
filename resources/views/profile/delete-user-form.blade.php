@@ -1,7 +1,7 @@
 <x-action-section>
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-900 dark:text-gray-300">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+            {{ __('Uma vez apagado, todos os seus dados serão permanentemente apagados. Antes de apagá-lo, por favor, baixe todos os seus dados ou informações que deseja reter.') }}
         </div>
 
         <div class="mt-5">
@@ -13,11 +13,11 @@
         <!-- Delete User Confirmation Modal -->
         <x-dialog-modal wire:model="confirmingUserDeletion">
             <x-slot name="title">
-                {{ __('Delete Account') }}
+                {{ __('Apagar conta') }}
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Você tem certeza que deseja apagar seu cadastro? Uma vez apagado, todos os seus dados serão permanentemnte apagados. Digite sua senha para apagar seu cadastro.') }}
+                {{ __('Você tem certeza que deseja apagar seu cadastro? Uma vez apagado, todos os seus dados serão permanentemente apagados. Digite sua senha para apagar seu cadastro.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-input type="password" class="block w-3/4 mt-1" placeholder="Senha da conta institucional" x-ref="password" wire:model.defer="password" wire:keydown.enter="deleteUser" />

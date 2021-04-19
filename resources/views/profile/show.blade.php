@@ -51,7 +51,7 @@
                 {{ __('Delete Account') }}
             </h4>
 
-            @livewire('profile.delete-user-form')
+            @livewire('delete-profile')
         </div>
 
     </div>
