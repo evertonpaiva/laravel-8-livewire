@@ -51,7 +51,7 @@ class AuthTest extends TestCase
 
     public function testUsersCanNotAuthenticateWithInvalidPassword()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create()->first();
 
         $this->post('/login', [
             'containstitucional' => $user->containstitucional,
