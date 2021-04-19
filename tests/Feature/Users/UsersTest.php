@@ -15,10 +15,14 @@ class UsersTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     /** @test */
     public function user_page_contains_user_component()
     {
-        $this->actingAs(User::factory(['role' => 'admin'])->create());
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
 
         $this->get('/users')
             ->assertSeeLivewire('users');
@@ -29,7 +33,9 @@ class UsersTest extends TestCase
      */
     public function canCreateUser()
     {
-        $this->actingAs(User::factory()->create());
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
 
         $userFake = User::factory()->make();
 
