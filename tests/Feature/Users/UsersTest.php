@@ -17,8 +17,7 @@ class UsersTest extends TestCase
 
     protected $seed = true;
 
-    /** @test */
-    public function user_page_contains_user_component()
+    public function testUserPageContainsUserComponent()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
@@ -28,10 +27,7 @@ class UsersTest extends TestCase
             ->assertSeeLivewire('users');
     }
 
-    /**
-     * @test
-     */
-    public function canCreateUser()
+    public function testCanCreateUser()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
@@ -51,10 +47,7 @@ class UsersTest extends TestCase
         $this->assertDatabaseHas('users', $userFake->getAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function checkRequiredFieldsCreateUser()
+    public function testCheckRequiredFieldsCreateUser()
     {
         $this->actingAs(User::factory()->create());
 

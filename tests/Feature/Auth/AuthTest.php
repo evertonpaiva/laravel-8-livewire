@@ -18,31 +18,21 @@ class AuthTest extends TestCase
 
     protected $seed = true;
 
-    /**
-     * @test
-     */
-    public function home_login_scree_can_be_rendered()
+    public function testHomeLoginScreeCanBeRendered()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
-    public function test_login_screen_can_be_rendered()
+    public function testLoginScreenCanBeRendered()
     {
         $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     * @medium
-     */
-    public function test_users_can_authenticate_using_the_login_screen()
+    public function testUsersCanAuthenticateUsingTheLoginScreen()
     {
         $username = env('LDAP_USERNAME');
         $password = env('LDAP_PASSWORD');
@@ -59,10 +49,7 @@ class AuthTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
-    /**
-     * @test
-     */
-    public function test_users_can_not_authenticate_with_invalid_password()
+    public function testUsersCanNotAuthenticateWithInvalidPassword()
     {
         $user = User::factory()->create();
 
@@ -74,20 +61,14 @@ class AuthTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
-    public function test_registration_screen_can_be_rendered()
+    public function testRegistrationScreenCanBeRendered()
     {
         $response = $this->get('/register');
 
         $response->assertStatus(200);
     }
 
-    /**
-     * @test
-     */
-    public function test_new_users_can_register()
+    public function testNewUsersCanRegister()
     {
         $username = env('LDAP_USERNAME');
         $password = env('LDAP_PASSWORD');
@@ -102,10 +83,7 @@ class AuthTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
-    /**
-     * @test
-     */
-    public function test_current_profile_information_is_available()
+    public function testCurrentProfileInformationIsAvailable()
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -115,10 +93,7 @@ class AuthTest extends TestCase
         $this->assertEquals($user->email, $component->state['email']);
     }
 
-    /**
-     * @test
-     */
-    public function test_profile_information_can_be_updated()
+    public function testProfileInformationCanBeUpdated()
     {
         $this->actingAs($user = User::factory()->create());
 

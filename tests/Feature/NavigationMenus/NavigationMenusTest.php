@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
+use Illuminate\Support\Arr;
 
 /**
  * @group navigationMenu
@@ -18,8 +19,7 @@ class NavigationMenusTest extends TestCase
 
     protected $seed = true;
 
-    /** @test */
-    public function navigation_menu_page_contains_navigation_menu_component()
+    public function testNavigationMenuPageContainsNavigationMenuComponent()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
@@ -29,10 +29,7 @@ class NavigationMenusTest extends TestCase
             ->assertSeeLivewire('navigation-menus');
     }
 
-    /**
-     * @test
-     */
-    public function canCreateNavigationMenu()
+    public function testCanCreateNavigationMenu()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
@@ -52,10 +49,7 @@ class NavigationMenusTest extends TestCase
         $this->assertDatabaseHas('navigation_menus', $navigationMenuFake->getAttributes());
     }
 
-    /**
-     * @test
-     */
-    public function checkRequiredFieldsCreateNavigationMenus()
+    public function testCheckRequiredFieldsCreateNavigationMenus()
     {
         $user = User::factory()->create();
         $user->assignRole('Admin');
@@ -67,5 +61,36 @@ class NavigationMenusTest extends TestCase
                 'label' => 'required',
                 'slug' => 'required',
             ]);
+    }
+
+    public function testNavigationMenuInformationCanBeUpdated()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
+
+        $navigationMenu = NavigationMenu::factory()->create()->first();
+
+        $navigationMenu->label = 'Test label';
+        $navigationMenu->slug = 'test-slug';
+        $navigationMenu->sequence = '100';
+        $navigationMenu->type = 'TopNav';
+        $navigationMenu->icon = 'fas test';
+        $navigationMenu->permission = 'test.list';
+
+        Livewire::test(NavigationMenus::class)
+            ->call('updateShowModal', $navigationMenu->id)
+            ->set('label', $navigationMenu->label)
+            ->set('slug', $navigationMenu->slug)
+            ->set('sequence', $navigationMenu->sequence)
+            ->set('type', $navigationMenu->type)
+            ->set('icon', $navigationMenu->icon)
+            ->set('permission', $navigationMenu->permission)
+            ->call('update');
+
+        $this->assertDatabaseHas(
+            'navigation_menus',
+            Arr::except($navigationMenu->getAttributes(), ['updated_at'])
+        );
     }
 }
