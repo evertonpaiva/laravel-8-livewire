@@ -9,7 +9,7 @@
             <directory suffix="Test.php">./tests/Feature/*/</directory>
         </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
+    <coverage processUncoveredFiles="true" pathCoverage="true">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
@@ -19,7 +19,8 @@
             <file>./app/Providers/BroadcastServiceProvider.php</file>
         </exclude>
         <report>
-            <html outputDirectory="./coverage" lowUpperBound="50" highLowerBound="90"/>
+            <html outputDirectory="./coverage" />
+            <text outputFile="/tmp/phpunit-log.txt" showUncoveredFiles="true" />
         </report>
     </coverage>
     <php>
