@@ -21,6 +21,16 @@ class AuthTest extends TestCase
     /**
      * @test
      */
+    public function home_login_scree_can_be_rendered()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
     public function test_login_screen_can_be_rendered()
     {
         $response = $this->get('/login');
@@ -74,19 +84,23 @@ class AuthTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /*public function test_new_users_can_register()
+    /**
+     * @test
+     */
+    public function test_new_users_can_register()
     {
+        $username = env('LDAP_USERNAME');
+        $password = env('LDAP_PASSWORD');
+
         $response = $this->post('/register', [
-            'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+            'containstitucional' => $username,
+            'password' => $password
         ]);
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
-    }*/
+    }
 
     /**
      * @test
