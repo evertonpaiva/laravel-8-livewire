@@ -20,7 +20,8 @@ mix.js('resources/js/app.js', 'public/js')
         ]
     }).browserSync({
     proxy: 'localhost', // your domain test
-    port: process.env.APP_PORT // your port
+    port: process.env.APP_PORT, // your port
+    open: false
 });
 
 if (mix.inProduction()) {
