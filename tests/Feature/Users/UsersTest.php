@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
+use Illuminate\Support\Arr;
 
 /**
  * @group user
@@ -60,5 +61,49 @@ class UsersTest extends TestCase
                 'cpf' => 'required',
                 'idpessoa' => 'required',
             ]);
+    }
+
+    public function testUserInformationCanBeUpdated()
+    {
+        $userAdmin = User::factory()->create();
+        $userAdmin->assignRole('Admin');
+        $this->actingAs($userAdmin);
+
+        $user = User::factory()->create()->first();
+
+        $user->nome = 'Test nome';
+        $user->email = 'test@email.com';
+        $user->containstitucional = 'test.test';
+        $user->cpf = '99999999999';
+        $user->idpessoa = 999999;
+
+        Livewire::test(Users::class)
+            ->call('updateShowModal', $user->id)
+            ->set('nome', $user->nome)
+            ->set('email', $user->email)
+            ->set('containstitucional', $user->containstitucional)
+            ->set('cpf', $user->cpf)
+            ->set('idpessoa', $user->idpessoa)
+            ->call('update');
+
+        $this->assertDatabaseHas(
+            'users',
+            Arr::except($user->getAttributes(), ['updated_at'])
+        );
+    }
+
+    public function testUserCanBeDeleted()
+    {
+        $userAdmin = User::factory()->create();
+        $userAdmin->assignRole('Admin');
+        $this->actingAs($userAdmin);
+
+        $user = User::factory()->create()->first();
+
+        $component = Livewire::test(Users::class)
+            ->call('deleteShowModal', $user->id)
+            ->call('delete');
+
+        $this->assertDatabaseMissing('users', $user->getAttributes());
     }
 }

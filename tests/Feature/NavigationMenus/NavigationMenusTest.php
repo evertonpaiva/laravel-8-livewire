@@ -38,6 +38,7 @@ class NavigationMenusTest extends TestCase
         $navigationMenuFake = NavigationMenu::factory()->make();
 
         Livewire::test(NavigationMenus::class)
+            ->call('createShowModal')
             ->set('sequence', $navigationMenuFake->sequence)
             ->set('type', $navigationMenuFake->type)
             ->set('label', $navigationMenuFake->label)
@@ -92,5 +93,20 @@ class NavigationMenusTest extends TestCase
             'navigation_menus',
             Arr::except($navigationMenu->getAttributes(), ['updated_at'])
         );
+    }
+
+    public function testNavigationMenuCanBeDeleted()
+    {
+        $user = User::factory()->create();
+        $user->assignRole('Admin');
+        $this->actingAs($user);
+
+        $navigationMenu = NavigationMenu::factory()->create()->first();
+
+        $component = Livewire::test(NavigationMenus::class)
+            ->call('deleteShowModal', $navigationMenu->id)
+            ->call('delete');
+
+        $this->assertDatabaseMissing('navigation_menus', $navigationMenu->getAttributes());
     }
 }
