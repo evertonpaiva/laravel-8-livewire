@@ -15,7 +15,9 @@
         </include>
         <exclude>
             <directory suffix=".php">./app/Actions/Fortify</directory>
+            <directory suffix=".php">./app/Actions/Jetstream</directory>
             <directory suffix=".php">./app/Console</directory>
+            <directory suffix=".php">./app/Http/Middleware</directory>
             <file>./app/Providers/BroadcastServiceProvider.php</file>
         </exclude>
         <report>
