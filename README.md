@@ -14,6 +14,7 @@ Integração com os microsserviços de UFVJM.
         * [<em>Alias</em> sail](#alias-sail)
         * [Gerar chave de SSH](#gerar-chave-de-ssh)
         * [Baixar código fonte](#baixar-código-fonte)
+        * [Configurar git hooks](#configurar-git-hooks)
         * [Logar no hub](#logar-no-hub)
     * [Instalação](#instalação)
         * [Iniciar os serviços](#iniciar-os-serviços)
@@ -126,6 +127,20 @@ Entrando no diretório e baixando:
 cd ~/laravel
 git clone git@git.dds.ufvjm.edu.br:dds/laravel-8-dds.git
 cd laravel-8-dds
+```
+
+### Configurar git hooks
+
+Configurando localmente scripts hook do git para executar automaticamente validações de código:
+
+```shell
+cd ~/laravel/laravel-8-dds
+
+# copiando scripts
+cp hooks/* .git/hooks
+
+# adicioando permissao de execucao
+chmod +x .git/hooks/*
 ```
 
 ### Logar no hub
