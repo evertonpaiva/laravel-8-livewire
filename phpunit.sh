@@ -44,7 +44,7 @@ if (( ! $(echo "$COVERAGE > $MINIMUM_CODE_COVERAGE" | bc -l) )); then
 fi
 
 echo -e "\nCorrigindo permissão na pasta do relatorio de cobertura de codigo"
-sudo chown -R $USER:$USER ./coverage
+sudo chown -R $USER:$USER ./coverage ${PHPUNIT_LOG_FILE}
 
 echo -e "\nConfira a pasta 'coverage' para relatorio de cobertura de codigo, abrir index.html com o navegador"
 
