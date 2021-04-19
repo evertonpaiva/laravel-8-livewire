@@ -9,16 +9,19 @@ MINIMUM_CODE_COVERAGE=80
 start_time=`date +%s`
 
 echo -e "\nLimpando cache de configuracoes"
-docker exec ${CONTAINER_WEB_NAME} ./vendor/bin/sail artisan config:clear
+docker exec -it ${CONTAINER_WEB_NAME} php artisan config:clear
 
 echo -e "\nRemovendo arquivo de log"
-rm -rf PHPUNIT_LOG_FILE
+rm -rf ${PHPUNIT_LOG_FILE}
 
 # Executando os testes, jogando saida dos testes em arquivo temporario
 # Guardando o retorno do PHPUnit em variavel
 echo -e "\nExecutando testes"
-docker exec ${CONTAINER_WEB_NAME} ./vendor/bin/phpunit --configuration "$CONFIGURATION_FILE" --coverage-text --colors=never "$@" | tee $PHPUNIT_LOG_FILE
-RETORNO=`echo ${PIPESTATUS[0]}`
+docker exec -it ${CONTAINER_WEB_NAME} php artisan test
+RETORNO=${PIPESTATUS[0]}
+
+echo -e "\nCopiando arquivo de log para maquina local"
+docker cp ${CONTAINER_WEB_NAME}:/${PHPUNIT_LOG_FILE} ${PHPUNIT_LOG_FILE}
 
 # Extraindo do arquivo o % de cobertura de código
 #COVERAGE=$(egrep '^\s*Lines:\s*\d+.\d+\%' $PHPUNIT_LOG_FILE | egrep -o '[0-9\.]+%' | tr -d '%')
