@@ -18,6 +18,7 @@ Integração com os microsserviços de UFVJM.
         * [Logar no hub](#logar-no-hub)
     * [Instalação](#instalação)
         * [Iniciar os serviços](#iniciar-os-serviços)
+        * [BrowserSync](#browsersync)
         * [Recontruir os serviços](#recontruir-os-serviços)
         * [Atualizar banco de dados](#atualizar-banco-de-dados)
         * [Parar os serviços](#parar-os-serviços)
@@ -163,6 +164,19 @@ Iniciar os containers dos serviços
 ```shell
 sail up -d
 ```
+
+### BrowserSync
+
+Utilizando a ferramenta BrowserSync, seu navegador ficará conectado no servidor web, desta forma todas as atualizações
+da área de desenvolvimento serão carregadas automaticamente no seu navegador.
+
+```shell
+# iniciar o browserync
+sail npm run watch
+```
+
+Acessar o ambiente através da URL fornecida no campo `External` (Ex: http://172.25.0.6:8090).
+
 
 ### Recontruir os serviços
 
