@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
-use Laravel\Jetstream\Jetstream;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -16,6 +15,8 @@ use Tests\TestCase;
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected $seed = true;
 
     /**
      * @test
@@ -27,19 +28,30 @@ class AuthTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /*public function test_users_can_authenticate_using_the_login_screen()
+    /**
+     * @test
+     * @medium
+     */
+    public function test_users_can_authenticate_using_the_login_screen()
     {
-        $user = User::factory()->create();
+        $username = env('LDAP_USERNAME');
+        $password = env('LDAP_PASSWORD');
+
+        $user = User::factory(['containstitucional' => $username])->create()->first();
+        $user->assignRole('Admin');
 
         $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
+            'containstitucional' => $username,
+            'password' => $password,
         ]);
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
-    }*/
+    }
 
+    /**
+     * @test
+     */
     public function test_users_can_not_authenticate_with_invalid_password()
     {
         $user = User::factory()->create();
@@ -52,6 +64,9 @@ class AuthTest extends TestCase
         $this->assertGuest();
     }
 
+    /**
+     * @test
+     */
     public function test_registration_screen_can_be_rendered()
     {
         $response = $this->get('/register');
@@ -73,6 +88,9 @@ class AuthTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }*/
 
+    /**
+     * @test
+     */
     public function test_current_profile_information_is_available()
     {
         $this->actingAs($user = User::factory()->create());
@@ -83,6 +101,9 @@ class AuthTest extends TestCase
         $this->assertEquals($user->email, $component->state['email']);
     }
 
+    /**
+     * @test
+     */
     public function test_profile_information_can_be_updated()
     {
         $this->actingAs($user = User::factory()->create());
