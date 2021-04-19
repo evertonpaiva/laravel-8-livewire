@@ -17,10 +17,10 @@
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                {{ __('Você tem certeza que deseja apagar seu cadastro? Uma vez apagado, todos os seus dados serão permanentemnte apagados. Digite sua senha para apagar seu cadastro.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-input type="password" class="block w-3/4 mt-1" placeholder="Password" x-ref="password" wire:model.defer="password" wire:keydown.enter="deleteUser" />
+                    <x-input type="password" class="block w-3/4 mt-1" placeholder="Senha da conta institucional" x-ref="password" wire:model.defer="password" wire:keydown.enter="deleteUser" />
 
                     <x-input-error for="password" class="mt-2" />
                 </div>
@@ -28,7 +28,7 @@
 
             <x-slot name="footer">
                 <x-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-                    {{ __('Nevermind') }}
+                    {{ __('Cancel') }}
                 </x-secondary-button>
 
                 <x-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
