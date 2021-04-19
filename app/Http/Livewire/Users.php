@@ -18,7 +18,6 @@ class Users extends Component
     /**
      * Put your custom public properties here!
      */
-    public $role = 'user';
     public $nome;
     public $email;
     public $cpf;
@@ -34,7 +33,6 @@ class Users extends Component
     public function rules()
     {
         return [
-            'role' => 'required',
             'nome' => 'required',
             'email' => 'required',
             'cpf' => 'required',
@@ -53,7 +51,6 @@ class Users extends Component
     public function loadModel()
     {
         $data = User::find($this->modelId);
-        $this->role = $data->role;
         $this->nome = $data->nome;
         $this->email = $data->email;
         $this->cpf = $data->cpf;
@@ -71,7 +68,6 @@ class Users extends Component
     public function modelData()
     {
         return [
-            'role' => $this->role,
             'nome' => $this->nome,
             'email' => $this->email,
             'cpf' => $this->cpf,
