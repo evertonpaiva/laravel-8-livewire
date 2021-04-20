@@ -9,7 +9,7 @@
         <div class="block text-sm">
             <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
             <x-jet-input id="searchTerm" wire:model="searchTerm" type="text" wire:model="searchTerm" placeholder="Busca" autofocus />
-            @error('searchTerm') <span class="error">{{ $message }}</span> @enderror
+            <x-jet-input-error for="searchTerm" class="mt-2" />
         </div>
     </div>
 
@@ -41,12 +41,14 @@
                                 {{ $item->containstitucional }}
                             </td>
                             <td class="px-4 py-3 text-xs">
-                                @foreach($item->getRoleNames() as $role)
-                                    @php($cor = \App\Models\User::getColorByRoleName($role))
-                                    <x-rounded color="{{ $cor }}">
-                                        {{ $role }}
-                                    </x-rounded>
-                                @endforeach
+                                <div class="flex items-center space-x-2">
+                                    @foreach($item->getRoleNames() as $role)
+                                        @php($cor = \App\Models\User::getColorByRoleName($role))
+                                        <x-rounded color="{{ $cor }}" >
+                                            {{ $role }}
+                                        </x-rounded>
+                                    @endforeach
+                                </div>
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
@@ -82,7 +84,7 @@
             <div class="block text-sm">
                 <x-jet-label for="nome" value="{{ __('Name') }}" />
                 <x-jet-input wire:model="nome" id="" type="text" readonly disabled class="disabled:opacity-50" />
-                @error('nome') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="nome" class="mt-2" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
@@ -92,7 +94,7 @@
                         <option value="{{ $role }}">{{ $role }}</option>
                     @endforeach
                 </select>
-                @error('role') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="role" class="mt-2" />
             </div>
 
             <!-- Tabela de perfis do usuario -->
@@ -111,7 +113,7 @@
                                 @foreach($roles as $role)
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-sm">
-                                            <div class="flex items-center space-x-4 text-sm">
+                                            <div class="flex items-center space-x-2 text-sm">
                                                 <x-delete-icon-button wire:click="deleteRoleShowModal({{ $modelId }}, '{{ $role }}')" />
                                                 <x-rounded color="{{ \App\Models\User::getColorByRoleName($role) }}">
                                                     {{ $role }}

@@ -87,7 +87,7 @@
             <div class="mt-4">
                 <x-jet-label for="label" value="{{ __('Label') }}" />
                 <x-jet-input wire:model="label" id="label" class="block mt-1 w-full" type="text" />
-                @error('label') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="label" class="mt-2" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="slug" value="{{ __('Slug') }}" />
@@ -97,12 +97,12 @@
                     </span>
                     <x-jet-input wire:model="slug" placeholder="endereço-url" />
                 </div>
-                @error('slug') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="slug" class="mt-2" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="sequence" value="{{ __('Sequence') }}" />
                 <x-jet-input wire:model="sequence" id="sequence" type="text" />
-                @error('sequence') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="sequence" class="mt-2" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="type" value="{{ __('Type') }}" />
@@ -115,12 +115,12 @@
             <div class="mt-4">
                 <x-jet-label for="icon" value="{{ __('Ícone') }}" />
                 <x-jet-input wire:model="icon" id="icon" type="text" />
-                @error('icon') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="icon" class="mt-2" />
             </div>
             <div class="mt-4">
                 <x-jet-label for="permission" value="{{ __('Permissão') }}" />
                 <x-jet-input wire:model="permission" id="permission" type="text" />
-                @error('permission') <span class="error">{{ $message }}</span> @enderror
+                <x-jet-input-error for="permission" class="mt-2" />
             </div>
         </x-slot>
 
@@ -166,6 +166,5 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
-
 
 </div>
