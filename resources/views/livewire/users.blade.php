@@ -52,8 +52,13 @@
                             </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
+                                    @can('user.edit')
                                     <x-edit-icon-button wire:click="updateShowModal({{ $item->id }})" />
+                                    @endcan
+
+                                    @can('user.delete')
                                     <x-delete-icon-button wire:click="deleteShowModal({{ $item->id }})" />
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
@@ -143,13 +148,17 @@
             </x-jet-secondary-button>
 
             @if ($modelId)
+                @can('user.edit')
                 <x-jet-button wire:click="update" wire:loading.attr="disabled">
                     {{ __('Adicionar') }}
                 </x-jet-button>
+                @endcan
             @else
+                @can('user.create')
                 <x-jet-button wire:click="create" wire:loading.attr="disabled">
                     {{ __('Create') }}
                 </x-jet-button>
+                @endcan
             @endif
         </x-slot>
     </x-jet-dialog-modal>
@@ -169,9 +178,11 @@
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
+            @can('user.delete')
             <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
                 {{ __('Apagar usuário') }}
             </x-jet-danger-button>
+            @endcan
         </x-slot>
     </x-jet-dialog-modal>
 
@@ -190,9 +201,11 @@
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
+            @can('user.edit')
             <x-jet-danger-button class="ml-2" wire:click="deleteRole" wire:loading.attr="disabled">
                 {{ __('Remover perfil') }}
             </x-jet-danger-button>
+            @endcan
         </x-slot>
     </x-jet-dialog-modal>
 </div>
