@@ -71,8 +71,26 @@ class User extends Authenticatable
     public static function userRoleList()
     {
         return [
-            'Admin',
-            'Usuário',
+            'Admin' => [
+                'color' => 'red'
+            ],
+            'Usuário' => [
+                'color' => 'green'
+            ],
+            'Perfil 3' => [
+                'color' => 'blue'
+            ],
+            'Perfil 4' => [
+                'color' => 'purple'
+            ],
+            'Perfil 5'  => [
+                'color' => 'pink'
+            ],
         ];
+    }
+
+    public static function getColorByRoleName($roleName)
+    {
+        return User::userRoleList()[$roleName]['color'];
     }
 }

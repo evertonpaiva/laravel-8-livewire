@@ -18,7 +18,7 @@ class RoleTableSeeder extends Seeder
         $roles = User::userRoleList();
 
         foreach ($roles as $key => $value) {
-            Role::create(['name' => $value]);
+            Role::create(['name' => $key]);
         }
     }
 }

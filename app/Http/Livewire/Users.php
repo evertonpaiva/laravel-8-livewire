@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 class Users extends Component
 {
@@ -12,6 +13,9 @@ class Users extends Component
 
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
+    public $modalConfirmRoleDeleteVisible;
+    public $roleNameDelete;
+    public $roleNameAdd;
     public $modelId;
     public $searchTerm;
 
@@ -24,6 +28,8 @@ class Users extends Component
     public $idpessoa;
     public $containstitucional;
     public $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+    public $roles = [];
+    public $remainingRoles = [];
 
     /**
      * The validation rules
@@ -57,6 +63,8 @@ class Users extends Component
         $this->idpessoa = $data->idpessoa;
         $this->containstitucional = $data->containstitucional;
         $this->password = $data->password;
+        $this->roles = $data->getRoleNames();
+        $this->remainingRoles= $this->getRemainingRoles();
     }
 
     /**
@@ -74,6 +82,8 @@ class Users extends Component
             'idpessoa' => $this->idpessoa,
             'containstitucional' => $this->containstitucional,
             'password' => $this->password,
+            'roles' => $this->roles,
+            'remainingRoles' => $this->remainingRoles
         ];
     }
 
@@ -114,7 +124,16 @@ class Users extends Component
     public function update()
     {
         $this->validate();
-        User::find($this->modelId)->update($this->modelData());
+        $user = User::find($this->modelId);
+        $user->update($this->modelData());
+
+        // caso tenha selecionado um perfil a adicionar, o adiciona
+        if (isset($this->roleNameAdd)) {
+            $user->assignRole($this->roleNameAdd);
+            $this->roles = $user->getRoleNames();
+            $this->remainingRoles= $this->getRemainingRoles();
+        }
+
         $this->modalFormVisible = false;
     }
 
@@ -175,5 +194,40 @@ class Users extends Component
         return view('livewire.users', [
             'data' => $this->read(),
         ]);
+    }
+
+    public function deleteRoleShowModal($id, $roleName)
+    {
+        $this->modelId = $id;
+        $this->roleNameDelete = $roleName;
+        $this->modalConfirmRoleDeleteVisible = true;
+    }
+
+    public function deleteRole()
+    {
+        $user = User::find($this->modelId);
+        $user->removeRole($this->roleNameDelete);
+        $this->roles = $user->getRoleNames();
+        $this->remainingRoles= $this->getRemainingRoles();
+
+        $this->modalConfirmRoleDeleteVisible = false;
+    }
+
+    public function getRemainingRoles()
+    {
+        // Todos os perfis do sistema
+        $allRoles = Role::pluck('name')->toArray();
+
+        // Todos os perfis que o usuário não tem
+        $remainingRoles = [];
+        foreach ($allRoles as $key => $value) {
+            // Testa se o usuário nao tem o perfil
+            #dd($value, $this->roles->toArray(), !in_array($value, $this->roles->toArray()));
+            if (!in_array($value, $this->roles->toArray())) {
+                $remainingRoles[] = $value;
+            }
+        }
+
+        return $remainingRoles;
     }
 }
