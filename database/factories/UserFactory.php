@@ -25,9 +25,9 @@ class UserFactory extends Factory
         return [
             'nome' => strtoupper($this->faker->name),
             'email' => $this->faker->unique()->safeEmail,
-            'containstitucional' => $this->faker->word .'.'. $this->faker->word ,
+            'containstitucional' => $this->faker->word .'.'. $this->faker->word. '.'. $this->faker->word ,
             'cpf' => $this->faker->numberBetween(10000000000, 99999999999),
-            'idpessoa' => $this->faker->numberBetween(1, 99999),
+            'idpessoa' => $this->faker->numberBetween(1, 9999999),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
