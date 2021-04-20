@@ -14,6 +14,7 @@ Integração com os microsserviços de UFVJM.
         * [<em>Alias</em> sail](#alias-sail)
         * [Gerar chave de SSH](#gerar-chave-de-ssh)
         * [Baixar código fonte](#baixar-código-fonte)
+        * [Instalar as dependências](#instalar-as-dependências)
         * [Configurar git hooks](#configurar-git-hooks)
         * [Logar no hub](#logar-no-hub)
     * [Instalação](#instalação)
@@ -128,6 +129,15 @@ Entrando no diretório e baixando:
 cd ~/laravel
 git clone git@git.dds.ufvjm.edu.br:dds/laravel-8-dds.git
 cd laravel-8-dds
+```
+
+### Instalar as dependências
+
+Instalar as dependências do projeto:
+
+```shell
+cd ~/laravel/laravel-8-dds
+docker run --rm -v $(pwd):/app composer/composer install
 ```
 
 ### Configurar git hooks
