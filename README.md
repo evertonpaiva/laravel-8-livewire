@@ -23,7 +23,7 @@ Integração com os microsserviços de UFVJM.
         * [Iniciar os serviços](#iniciar-os-serviços)
         * [BrowserSync](#browsersync)
         * [Recontruir os serviços](#recontruir-os-serviços)
-        * [Atualizar banco de dados](#atualizar-banco-de-dados)
+        * [Criar/Atualizar banco de dados](#criaratualizar-banco-de-dados)
         * [Parar os serviços](#parar-os-serviços)
     * [Referências](#referências)
         * [Laravel](#laravel)
@@ -225,12 +225,12 @@ sail stop
 sail up --build -d
 ```
 
-### Atualizar banco de dados
+### Criar/Atualizar banco de dados
 
-Atualizar a estrutura do banco do dados:
+Criar ou autalizar a estrutura do banco do dados e fornecer os dados iniciais:
 
 ```shell
-sail artisan migrate
+sail artisan migrate:refresh --seed
 ```
 
 ### Parar os serviços
