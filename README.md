@@ -14,6 +14,8 @@ Integração com os microsserviços de UFVJM.
         * [<em>Alias</em> sail](#alias-sail)
         * [Gerar chave de SSH](#gerar-chave-de-ssh)
         * [Baixar código fonte](#baixar-código-fonte)
+        * [Gerar arquivo .env](#gerar-arquivo-env)
+        * [Client Id e Client Key da Aplicação](#client-id-e-client-key-da-aplicação)
         * [Instalar as dependências](#instalar-as-dependências)
         * [Configurar git hooks](#configurar-git-hooks)
         * [Logar no hub](#logar-no-hub)
@@ -131,6 +133,26 @@ git clone git@git.dds.ufvjm.edu.br:dds/laravel-8-dds.git
 cd laravel-8-dds
 ```
 
+### Gerar arquivo .env
+
+```bash
+cd ~/laravel/laravel-8-dds
+if [ ! -f .env ]; then
+    echo -e "Gerando arquivo .env"
+    cp .env.example .env    
+fi
+```
+
+### Client Id e Client Key da Aplicação
+
+Lançar os valores corretos para os arquivos da integração com os microsserviços no arquivo **.env**. Substituir os valores de **GRAPHQL_APP_ID** e **GRAPHQL_APP_KEY** para os valores cadastrados na stack de Microsserviços DTI/DDS.
+
+```env
+GRAPHQL_ENVNAME=teste
+GRAPHQL_APP_ID=
+GRAPHQL_APP_KEY=
+```
+
 ### Instalar as dependências
 
 Instalar as dependências do projeto:
@@ -174,6 +196,9 @@ Iniciar os containers dos serviços
 ```shell
 sail up -d
 ```
+
+* Atenção: caso alguma porta já esteja ocupada por outro serviço, você pode alterá-a no arquivo `.env` e escolher outra.
+Ex: `Bind for 0.0.0.0:8090 failed: port is already allocated`
 
 ### BrowserSync
 
