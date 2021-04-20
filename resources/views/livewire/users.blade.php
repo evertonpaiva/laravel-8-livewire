@@ -8,9 +8,15 @@
     <div class="flex flex-row mt-5 mb-5">
         <div class="block text-sm">
             <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
-            <x-jet-input id="searchTerm" wire:model="searchTerm" type="text" wire:model="searchTerm" placeholder="Busca" autofocus />
+            <x-jet-input id="searchTerm" wire:model="searchTerm" type="text" wire:model="searchTerm" placeholder="Nome, email ou conta institucional" autofocus />
             <x-jet-input-error for="searchTerm" class="mt-2" />
         </div>
+    </div>
+
+    <div class="bg-white mb-4 invisible" wire:loading.delay.class.remove="invisible">
+        <span class="text-purple-600 text-xl">
+            <i class="fas fa-circle-notch fa-spin"></i> Carregando ...
+        </span>
     </div>
 
     {{-- The data table --}}
