@@ -20,6 +20,7 @@ abstract class ComponentCrud extends Component
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
     public $modelId;
+    public $readyToLoad = false;
 
     /**
      * Shows the create modal
@@ -31,6 +32,7 @@ abstract class ComponentCrud extends Component
         $this->resetValidation();
         $this->reset();
         $this->modalFormVisible = true;
+        $this->readyToLoadData();
     }
 
     /**
@@ -45,6 +47,7 @@ abstract class ComponentCrud extends Component
         $this->resetValidation();
         $this->reset();
         $this->modalFormVisible = true;
+        $this->readyToLoadData();
         $this->modelId = $id;
         $this->loadModel();
     }
@@ -59,6 +62,28 @@ abstract class ComponentCrud extends Component
     {
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
+        $this->readyToLoadData();
+    }
+
+    /**
+     * Marca que o componente está pronto para carregar
+     * os dados
+     */
+    public function readyToLoadData()
+    {
+        $this->readyToLoad = true;
+    }
+
+    /**
+     * Carrega os dados e renderiza o componente na tela
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function render()
+    {
+        return view($this->getDefaultView(), [
+            'data' => $this->readyToLoad ? $this->read() : [],
+        ]);
     }
 
     abstract public function create();
@@ -67,5 +92,5 @@ abstract class ComponentCrud extends Component
 
     abstract public function modelData();
 
-    abstract public function render();
+    abstract public function getDefaultView();
 }

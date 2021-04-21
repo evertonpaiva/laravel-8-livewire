@@ -115,14 +115,12 @@ class NavigationMenus extends ComponentCrud
     }
 
     /**
-     * Carrega os dados e renderiza o componente na tela
+     * Retorna o nome da view padrão
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return string
      */
-    public function render()
+    public function getDefaultView()
     {
-        return view('livewire.navigation-menus', [
-            'data' => $this->read(),
-        ]);
+        return 'livewire.navigation-menus';
     }
 }

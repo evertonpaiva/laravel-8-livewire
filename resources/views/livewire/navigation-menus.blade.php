@@ -10,7 +10,7 @@
     <x-loading />
 
     {{-- The data table --}}
-    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs" wire:init="readyToLoadData">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
                 <thead>

@@ -146,18 +146,6 @@ class Users extends ComponentCrud
     }
 
     /**
-     * Carrega os dados e renderiza o componente na tela
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function render()
-    {
-        return view('livewire.users', [
-            'data' => $this->read(),
-        ]);
-    }
-
-    /**
      * Exibe o modal para apagar um perfil de um usuário
      *
      * @param $id
@@ -203,5 +191,15 @@ class Users extends ComponentCrud
         }
 
         return $remainingRoles;
+    }
+
+    /**
+     * Retorna o nome da view padrão
+     *
+     * @return string
+     */
+    public function getDefaultView()
+    {
+        return 'livewire.users';
     }
 }
