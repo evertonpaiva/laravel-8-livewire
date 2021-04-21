@@ -73,7 +73,13 @@
               <!-- Profile menu -->
               <li class="relative">
                   <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                      <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->avatarUrl() }}" alt="{{ Auth::user()->name }}" aria-hidden="true" />
+                      <div id="header" class="flex items-center mb-2">
+                          <img alt="avatar" class="object-cover w-12 h-12 rounded-full" src="{{ Auth::user()->avatarUrl() }}" alt="{{ Auth::user()->nome }}" aria-hidden="true" />
+                          <div id="header-text" class="leading-5 ml-6 sm">
+                              <h4 id="name" class="text-xs font-semibold">{{ Auth::user()->nome }}</h4>
+                              <h5 id="job" class="text-xs font-semibold">{{ Auth::user()->containstitucional }}</h5>
+                          </div>
+                      </div>
                   </button>
                   <template x-if="isProfileMenuOpen">
                       <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu" class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700" aria-label="submenu">
