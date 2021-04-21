@@ -89,8 +89,24 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Retorno a cor do perfil através de seu nome
+     *
+     * @param $roleName nome do perfil
+     * @return string cor do perfil
+     */
     public static function getColorByRoleName($roleName)
     {
         return User::userRoleList()[$roleName]['color'];
+    }
+
+    /**
+     * Gera a url para imagem de perfil do usuário, através do serviço Gravatar
+     *
+     * @return string url da imagem no serviço gravatar
+     */
+    public function avatarUrl()
+    {
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->email)));
     }
 }
