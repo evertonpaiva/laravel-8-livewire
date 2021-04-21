@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\NavigationMenu;
-use Livewire\WithPagination;
 
-class NavigationMenus extends Component
+/**
+ * Class NavigationMenus
+ *
+ * Componente para manipulação de dados de menu de navegação
+ *
+ * @package App\Http\Livewire
+ */
+class NavigationMenus extends ComponentCrud
 {
-    use WithPagination;
-
-    public $modalFormVisible;
-    public $modalConfirmDeleteVisible;
-
-    public $modelId;
     public $label;
     public $slug;
     public $sequence = 1;
@@ -59,7 +58,9 @@ class NavigationMenus extends Component
     }
 
     /**
-     *  The update function
+     * The update function
+     *
+     * @return void
      */
     public function update()
     {
@@ -69,49 +70,15 @@ class NavigationMenus extends Component
     }
 
     /**
-     * The delete function
+     * The delete function.
+     *
+     * @return void
      */
     public function delete()
     {
         NavigationMenu::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
-    }
-
-    /**
-     * Shows the create modal
-     */
-    public function createShowModal()
-    {
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
-    }
-
-    /**
-     * Shows the form modal
-     * in update mode
-     *
-     * @param $id
-     */
-    public function updateShowModal($id)
-    {
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
-        $this->modelId = $id;
-        $this->loadModel();
-    }
-
-    /**
-     * Shows de delete confirmation modal.
-     *
-     * @param $id
-     */
-    public function deleteShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalConfirmDeleteVisible = true;
     }
 
     /**
@@ -147,6 +114,11 @@ class NavigationMenus extends Component
         ];
     }
 
+    /**
+     * Carrega os dados e renderiza o componente na tela
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.navigation-menus', [

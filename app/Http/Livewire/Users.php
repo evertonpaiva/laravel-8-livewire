@@ -3,25 +3,21 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Livewire\Component;
-use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
-class Users extends Component
+/**
+ * Class Users
+ *
+ * Componente para manipulação de dados de usuário
+ *
+ * @package App\Http\Livewire
+ */
+class Users extends ComponentCrud
 {
-    use WithPagination;
-
-    public $modalFormVisible;
-    public $modalConfirmDeleteVisible;
     public $modalConfirmRoleDeleteVisible;
     public $roleNameDelete;
     public $roleNameAdd;
-    public $modelId;
     public $searchTerm;
-
-    /**
-     * Put your custom public properties here!
-     */
     public $nome;
     public $email;
     public $cpf;
@@ -103,7 +99,7 @@ class Users extends Component
     /**
      * The read function.
      *
-     * @return void
+     * @return mixed
      */
     public function read()
     {
@@ -150,45 +146,10 @@ class Users extends Component
     }
 
     /**
-     * Shows the create modal
+     * Carrega os dados e renderiza o componente na tela
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function createShowModal()
-    {
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
-    }
-
-    /**
-     * Shows the form modal
-     * in update mode.
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    public function updateShowModal($id)
-    {
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
-        $this->modelId = $id;
-        $this->loadModel();
-    }
-
-    /**
-     * Shows the delete confirmation modal.
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    public function deleteShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalConfirmDeleteVisible = true;
-    }
-
     public function render()
     {
         return view('livewire.users', [
@@ -196,6 +157,12 @@ class Users extends Component
         ]);
     }
 
+    /**
+     * Exibe o modal para apagar um perfil de um usuário
+     *
+     * @param $id
+     * @param $roleName
+     */
     public function deleteRoleShowModal($id, $roleName)
     {
         $this->modelId = $id;
@@ -203,6 +170,9 @@ class Users extends Component
         $this->modalConfirmRoleDeleteVisible = true;
     }
 
+    /**
+     * Apaga o perfil de um usuário
+     */
     public function deleteRole()
     {
         $user = User::find($this->modelId);
@@ -213,6 +183,11 @@ class Users extends Component
         $this->modalConfirmRoleDeleteVisible = false;
     }
 
+    /**
+     * Calcula vetor de perfis que o usuário não possui no sistema
+     *
+     * @return array
+     */
     public function getRemainingRoles()
     {
         // Todos os perfis do sistema
@@ -222,7 +197,6 @@ class Users extends Component
         $remainingRoles = [];
         foreach ($allRoles as $key => $value) {
             // Testa se o usuário nao tem o perfil
-            #dd($value, $this->roles->toArray(), !in_array($value, $this->roles->toArray()));
             if (!in_array($value, $this->roles->toArray())) {
                 $remainingRoles[] = $value;
             }
