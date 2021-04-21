@@ -7,6 +7,8 @@
         @endcan
     </div>
 
+    <x-loading />
+
     {{-- The data table --}}
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
@@ -24,8 +26,7 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                @if ($data->count())
-                    @foreach ($data as $item)
+                    @forelse ($data as $item)
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 {{ $item->type }}
@@ -61,21 +62,21 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
-                @else
-                    <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3 text-sm" colspan="5">
-                            {{ __('No Results Found') }}
-                        </td>
-                    </tr>
-                @endif
+                    @empty
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm" colspan="5">
+                                {{ __('No results found') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
-    <br />
-    {{ $data->links() }}
+    @if( is_object($data))
+        {{ $data->links() }}
+    @endif
 
     {{-- Modal Form --}}
     <x-jet-dialog-modal wire:model="modalFormVisible">
@@ -117,6 +118,15 @@
                 <x-jet-input wire:model="icon" id="icon" type="text" />
                 <x-jet-input-error for="icon" class="mt-2" />
             </div>
+
+            <div class="mt-4">
+                <x-jet-label for="icon-preview" value="{{ __('Pré-visualização') }}" />
+                <div class="ml-4 mb-2">
+                    <i class="fas {{ $icon }}"></i>
+                    <span class="ml-4">{{ $label }}</span>
+                </div>
+            </div>
+
             <div class="mt-4">
                 <x-jet-label for="permission" value="{{ __('Permissão') }}" />
                 <x-jet-input wire:model="permission" id="permission" type="text" />

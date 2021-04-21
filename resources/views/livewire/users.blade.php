@@ -13,11 +13,7 @@
         </div>
     </div>
 
-    <div class="bg-white mb-4 invisible" wire:loading.delay.class.remove="invisible">
-        <span class="text-purple-600 text-xl">
-            <i class="fas fa-circle-notch fa-spin"></i> Carregando ...
-        </span>
-    </div>
+    <x-loading />
 
     {{-- The data table --}}
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -34,8 +30,7 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                @if ($data->count())
-                    @foreach ($data as $item)
+                    @forelse ($data as $item)
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 {{ $item->nome }}
@@ -68,21 +63,22 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
-                @else
-                    <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3 text-sm" colspan="5">
-                            {{ __('No Results Found') }}
-                        </td>
-                    </tr>
-                @endif
+                    @empty
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3 text-sm" colspan="5">
+                                {{ __('No results found') }}
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
     <div class="flex flex-row mt-5">
-    {{ $data->links() }}
+        @if( is_object($data))
+            {{ $data->links() }}
+        @endif
     </div>
 
     {{-- Modal Form --}}
