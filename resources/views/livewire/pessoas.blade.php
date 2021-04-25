@@ -4,6 +4,8 @@
         Pessoas
     </x-form-title>
 
+    @include('layouts.flash-messages')
+
     {{-- Search --}}
     <div class="flex flex-row mt-5 mb-5">
         <div class="block text-sm">

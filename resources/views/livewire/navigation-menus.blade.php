@@ -4,6 +4,8 @@
         Menu de Navegação
     </x-form-title>
 
+    @include('layouts.flash-messages')
+
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
         @can('navigation-menu.create')
         <x-jet-button wire:click="createShowModal">
