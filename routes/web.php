@@ -34,6 +34,12 @@ Route::group(['middleware' => [
         })->name('navigation-menus');
     });
 
+    Route::group(['middleware' => ['permission:pessoa.list']], function () {
+        Route::get('/pessoas', function () {
+            return view('admin.pessoas');
+        })->name('pessoas');
+    });
+
     Route::group(['middleware' => ['permission:user-permission.list']], function () {
         Route::get('/user-permissions', function () {
             return view('admin.user-permissions');
