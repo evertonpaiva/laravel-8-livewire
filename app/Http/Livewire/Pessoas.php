@@ -107,9 +107,9 @@ class Pessoas extends ComponentCrud
                     ->queryList($pagination, $query)
                     ->getResults();
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            // TO-DO Implementar o tratamento aqui
-            //return checkGraphqlRequestException($e);
+            $message = $e->getMessage();
+            session()->flash('error', $message);
+            return [];
         }
 
         $this->navHasNextPage = $pessoas->pageInfo->hasNextPage;
@@ -118,10 +118,6 @@ class Pessoas extends ComponentCrud
         $this->navEndCursor = $pessoas->pageInfo->endCursor;
 
         $this->navAction = null;
-
-        /*if(count($pessoas->edges[0]->node->alunos->edges) > 0){
-            dd($pessoas->edges[0]->node->alunos->edges[0]->node);
-        }*/
 
         return $pessoas->edges;
     }
