@@ -10,7 +10,7 @@
     <div class="flex flex-row mt-5 mb-5">
         <div class="block text-sm">
             <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
-            <x-jet-input id="searchTerm" wire:model.lazy="searchTerm" type="text" wire:model="searchTerm" placeholder="Nome" autofocus x-on:keydown.arrow-up.stop.prevent="searchTerm = '';" />
+            <x-jet-input id="searchTerm" wire:model.debounce.500ms="searchTerm" wire:loading.class.delay="opacity-50" type="text" placeholder="Nome" autofocus />
             <x-jet-input-error for="searchTerm" class="mt-2" />
         </div>
     </div>
