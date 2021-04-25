@@ -54,7 +54,7 @@ class NavigationMenus extends ComponentCrud
      */
     public function read()
     {
-        return NavigationMenu::paginate(5);
+        return NavigationMenu::paginate(self::TAMANHOPAGINA);
     }
 
     /**

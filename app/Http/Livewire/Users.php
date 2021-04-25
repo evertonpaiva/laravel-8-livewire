@@ -109,7 +109,7 @@ class Users extends ComponentCrud
             ->orWhere('email', 'ilike', $query)
             ->orWhere('containstitucional', 'ilike', $query)
             ->orderBy('nome')
-            ->paginate(10);
+            ->paginate(self::TAMANHOPAGINA);
     }
 
     /**
