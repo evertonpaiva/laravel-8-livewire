@@ -17,17 +17,36 @@ abstract class ComponentCrud extends Component
 {
     use WithPagination;
 
+    /**
+     * controla a visibilidade do formulário de cadastro/edição
+     */
     public $modalFormVisible;
+
+    /**
+     * controla a visibilidade do modal de exclusão
+     */
     public $modalConfirmDeleteVisible;
+
+    /**
+     * Código do elemento
+     */
     public $modelId;
+
+    /**
+     * indica que o componente já está pronto para carregar os dados
+     */
     public $readyToLoad = false;
 
     /**
+     * Tamanho padrão da paginação
+     */
+    const TAMANHOPAGINA = 10;
+
+    /**
      * Shows the create modal
-     *
      * @return void
      */
-    public function createShowModal()
+    public function createShowModal(): void
     {
         $this->resetValidation();
         $this->reset();
@@ -42,7 +61,7 @@ abstract class ComponentCrud extends Component
      * @param  mixed $id
      * @return void
      */
-    public function updateShowModal($id)
+    public function updateShowModal($id): void
     {
         $this->resetValidation();
         $this->reset();
