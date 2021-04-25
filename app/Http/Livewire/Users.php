@@ -94,6 +94,7 @@ class Users extends ComponentCrud
         User::create($this->modelData());
         $this->modalFormVisible = false;
         $this->reset();
+        session()->flash('success', 'Usuário criado.');
     }
 
     /**
@@ -128,6 +129,7 @@ class Users extends ComponentCrud
             $user->assignRole($this->roleNameAdd);
             $this->roles = $user->getRoleNames();
             $this->remainingRoles= $this->getRemainingRoles();
+            session()->flash('success', 'Perfil '.$this->roleNameAdd.' adicionado ao usuário.');
         }
 
         $this->modalFormVisible = false;
@@ -143,6 +145,7 @@ class Users extends ComponentCrud
         User::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
+        session()->flash('info', 'Usuário removido.');
     }
 
     /**
@@ -169,6 +172,7 @@ class Users extends ComponentCrud
         $this->remainingRoles= $this->getRemainingRoles();
 
         $this->modalConfirmRoleDeleteVisible = false;
+        session()->flash('info', 'Perfil '.$this->roleNameDelete.' removido do usuário.');
     }
 
     /**

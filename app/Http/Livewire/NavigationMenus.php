@@ -45,6 +45,7 @@ class NavigationMenus extends ComponentCrud
         NavigationMenu::create($this->modelData());
         $this->modalFormVisible = false;
         $this->reset();
+        session()->flash('success', 'Menu de navegação criado.');
     }
 
     /**
@@ -67,6 +68,7 @@ class NavigationMenus extends ComponentCrud
         $this->validate();
         NavigationMenu::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
+        session()->flash('success', 'Menu de navegação atualizado.');
     }
 
     /**
@@ -79,6 +81,7 @@ class NavigationMenus extends ComponentCrud
         NavigationMenu::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
+        session()->flash('info', 'Menu de navegação removido.');
     }
 
     /**
