@@ -1,8 +1,8 @@
 <div class="p-6 dark:bg-gray-800">
 
-    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+    <x-form-title>
         Usuários
-    </h4>
+    </x-form-title>
 
     {{-- Search --}}
     <div class="flex flex-row mt-5 mb-5">

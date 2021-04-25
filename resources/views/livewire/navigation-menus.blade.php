@@ -1,4 +1,9 @@
 <div class="p-6 dark:bg-gray-800">
+
+    <x-form-title>
+        Menu de Navegação
+    </x-form-title>
+
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
         @can('navigation-menu.create')
         <x-jet-button wire:click="createShowModal">
