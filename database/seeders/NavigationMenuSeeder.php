@@ -30,7 +30,7 @@ class NavigationMenuSeeder extends Seeder
             'slug' => 'users',
             'sequence' => '2',
             'type' => 'SidebarNav',
-            'icon' => 'fas fa-users',
+            'icon' => 'fas fa-user-friends',
             'permission' => 'user.list',
         ]);
 
@@ -54,7 +54,7 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'user-permission.list',
         ]);
 
-        //user-permissions
+        //pessoas
         NavigationMenu::create([
             'label' => 'Pessoas',
             'slug' => 'pessoas',
