@@ -54,11 +54,21 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'user-permission.list',
         ]);
 
+        //user-permissions
+        NavigationMenu::create([
+            'label' => 'Pessoas',
+            'slug' => 'pessoas',
+            'sequence' => '5',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-users',
+            'permission' => 'pessoa.list',
+        ]);
+
         //logout
         NavigationMenu::create([
             'label' => 'Sair',
             'slug' => 'logout',
-            'sequence' => '5',
+            'sequence' => '6',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-sign-out-alt',
             'permission' => 'logout.do',

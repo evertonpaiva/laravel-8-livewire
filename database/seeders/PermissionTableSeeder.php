@@ -32,6 +32,8 @@ class PermissionTableSeeder extends Seeder
             'navigation-menu.edit',
             'navigation-menu.delete',
 
+            'pessoa.list',
+
             'logout.do',
         ];
 
