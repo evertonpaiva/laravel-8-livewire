@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use GraphqlClient\GraphqlRequest\Common\PessoaGraphqlRequest;
-use GraphqlClient\GraphqlQuery\BackwardPaginationQuery;
-use GraphqlClient\GraphqlQuery\ForwardPaginationQuery;
+use App\Http\Traits\CursorRelayPagination;
 
 /**
  * Class Users
@@ -15,18 +14,13 @@ use GraphqlClient\GraphqlQuery\ForwardPaginationQuery;
  */
 class Pessoas extends ComponentCrud
 {
+    use CursorRelayPagination;
+
     public $searchTerm;
     public $idpessoa;
     public $nome;
-    public $email;
     public $cpf;
     public $containstitucional;
-
-    public $navStartCursor;
-    public $navEndCursor;
-    public $navAction;
-    public $navHasNextPage;
-    public $navHasPreviousPage;
 
     /**
      * Loads the model data
@@ -42,9 +36,6 @@ class Pessoas extends ComponentCrud
         $this->cpf = $data->cpf;
         $this->idpessoa = $data->idpessoa;
         $this->containstitucional = $data->containstitucional;
-        $this->password = $data->password;
-        $this->roles = $data->getRoleNames();
-        $this->remainingRoles= $this->getRemainingRoles();
     }
 
     /**
@@ -61,9 +52,6 @@ class Pessoas extends ComponentCrud
             'cpf' => $this->cpf,
             'idpessoa' => $this->idpessoa,
             'containstitucional' => $this->containstitucional,
-            'password' => $this->password,
-            'roles' => $this->roles,
-            'remainingRoles' => $this->remainingRoles
         ];
     }
 
@@ -89,22 +77,15 @@ class Pessoas extends ComponentCrud
             // Carrega a classe de pessoa
             $pessoaGraphqlRequest = new PessoaGraphqlRequest();
 
-            // Paginacao para frente, partindo de um determinado registro
-            if (($this->navAction == 'next')) {
-                $pagination = new ForwardPaginationQuery(self::TAMANHOPAGINA, $this->navEndCursor);
-                // Paginacao para tras, partindo de um determinado registro
-            } elseif ($this->navAction == 'previous') {
-                $pagination = new BackwardPaginationQuery(self::TAMANHOPAGINA, $this->navStartCursor);
-                // Sem paginacao, primeiros registros
-            } else {
-                $pagination = new ForwardPaginationQuery(self::TAMANHOPAGINA);
-            }
+            // Define a paginacao
+            $this->setPaginationDirection();
 
+            // Define a requisicao e seus relacionamentos
             $pessoas =
                 $pessoaGraphqlRequest
                     ->addRelationServidores()
                     ->addRelationAlunos()
-                    ->queryList($pagination, $query)
+                    ->queryList($this->pagination, $query)
                     ->getResults();
         } catch (\Exception $e) {
             $message = $e->getMessage();
@@ -112,12 +93,8 @@ class Pessoas extends ComponentCrud
             return [];
         }
 
-        $this->navHasNextPage = $pessoas->pageInfo->hasNextPage;
-        $this->navHasPreviousPage = $pessoas->pageInfo->hasPreviousPage;
-        $this->navStartCursor = $pessoas->pageInfo->startCursor;
-        $this->navEndCursor = $pessoas->pageInfo->endCursor;
-
-        $this->navAction = null;
+        // Atualiza as informacao de navegacao de paginas
+        $this->setPageInfo($pessoas->pageInfo);
 
         return $pessoas->edges;
     }
@@ -148,15 +125,5 @@ class Pessoas extends ComponentCrud
     public function getDefaultView()
     {
         return 'livewire.pessoas';
-    }
-
-    public function nextPage()
-    {
-        $this->navAction = 'next';
-    }
-
-    public function previousPage()
-    {
-        $this->navAction = 'previous';
     }
 }
