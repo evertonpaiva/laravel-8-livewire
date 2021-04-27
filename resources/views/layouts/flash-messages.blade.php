@@ -25,7 +25,7 @@ if (Session::get('info')){
             x-data="{ show: false }"
             x-init="() => {
             setTimeout(() => show = true, 500);
-            setTimeout(() => show = false, 5000);
+            setTimeout(() => show = false, {{ $n->duration }}000);
           }"
             x-show="show"
             x-description="Notification panel, show/hide based on alert state."
