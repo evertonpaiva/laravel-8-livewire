@@ -29,6 +29,7 @@
                     <th class="px-4 py-3">Conta Institucional</th>
                     <th class="px-4 py-3">Aluno</th>
                     <th class="px-4 py-3">Servidor</th>
+                    <th class="px-4 py-3">Ações</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -46,7 +47,7 @@
                             <td class="px-4 py-3 text-sm">
                                 <div class="flex items-center space-x-2">
                                     @foreach($item->node->alunos->edges as $aluno)
-                                        @php($cor = 'blue')
+                                        @php($cor = 'orange')
                                         <x-rounded color="{{ $cor }}" >
                                             {{ $aluno->node->matricula }}
                                         </x-rounded>
@@ -56,11 +57,16 @@
                             <td class="px-4 py-3 text-sm">
                                 <div class="flex items-center space-x-2">
                                     @foreach($item->node->servidores->edges as $servidor)
-                                        @php($cor = 'green')
+                                        @php($cor = 'blue')
                                         <x-rounded color="{{ $cor }}" >
                                             {{ $servidor->node->idvinculo }}
                                         </x-rounded>
                                     @endforeach
+                                </div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <x-detail-icon-button wire:click="updateShowModal({{ $item->node->idpessoa }})" />
                                 </div>
                             </td>
                         </tr>
@@ -97,5 +103,58 @@
         </x-disabled-button>
         @endif
     </div>
+
+    {{-- Modal Form --}}
+    <x-jet-dialog-modal wire:model="modalFormVisible">
+        <x-slot name="title">
+            {{ __('Dados pessoais') }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="block text-sm">
+                <x-jet-label for="nome" value="{{ __('Name') }}" />
+                <x-jet-input wire:model="nome" id="" type="text" readonly disabled class="disabled:opacity-50" />
+            </div>
+            <div class="block text-sm">
+                <x-jet-label for="cpf" value="{{ __('CPF') }}" />
+                <x-jet-input wire:model="cpf" id="" type="text" readonly disabled class="disabled:opacity-50" />
+            </div>
+            <div class="block text-sm">
+                <x-jet-label for="containstitucional" value="{{ __('Conta Institucional') }}" />
+                <x-jet-input wire:model="containstitucional" id="" type="text" readonly disabled class="disabled:opacity-50" />
+            </div>
+
+            <!-- component -->
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
+                <!-- Alunos -->
+                @foreach($alunos as $aluno)
+                    <x-card-aluno
+                        curso="{{ $aluno->node->objPrograma->curso }}"
+                        nomecurso="{{ $aluno->node->objPrograma->nomecurso }}"
+                        matricula="{{ $aluno->node->matricula }}"
+                        situacao="{{ $aluno->node->objSituacao->situacao }}"
+                        cor="{{ $aluno->node->objSituacao->cor }}"
+                    />
+                @endforeach
+
+                <!-- Servidores -->
+                @foreach($servidores as $servidor)
+                    <x-card-servidor
+                        idvinculo="{{ $servidor->node->idvinculo }}"
+                        cargo="{{ $servidor->node->cargo }}"
+                        situacao="{{ $servidor->node->situacao }}"
+                        cor="{{ $servidor->node->cor }}"
+                    />
+                @endforeach
+            </div>
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="closeUpdateModal" wire:loading.attr="disabled">
+                {{ __('Fechar') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 
 </div>
