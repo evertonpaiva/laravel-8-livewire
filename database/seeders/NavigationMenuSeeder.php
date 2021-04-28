@@ -64,11 +64,21 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'pessoa.list',
         ]);
 
+        //cursor
+        NavigationMenu::create([
+            'label' => 'Cursos',
+            'slug' => 'cursos',
+            'sequence' => '6',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-graduation-cap',
+            'permission' => 'curso.list',
+        ]);
+
         //logout
         NavigationMenu::create([
             'label' => 'Sair',
             'slug' => 'logout',
-            'sequence' => '6',
+            'sequence' => '7',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-sign-out-alt',
             'permission' => 'logout.do',

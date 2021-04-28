@@ -40,6 +40,12 @@ Route::group(['middleware' => [
         })->name('pessoas');
     });
 
+    Route::group(['middleware' => ['permission:curso.list']], function () {
+        Route::get('/cursos', function () {
+            return view('admin.cursos');
+        })->name('cursos');
+    });
+
     Route::group(['middleware' => ['permission:user-permission.list']], function () {
         Route::get('/user-permissions', function () {
             return view('admin.user-permissions');
