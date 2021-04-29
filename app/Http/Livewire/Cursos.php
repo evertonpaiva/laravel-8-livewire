@@ -120,7 +120,7 @@ class Cursos extends ComponentCrud
         }
 
         try {
-            // Carrega a classe de pessoa
+            // Carrega a classe de curso
             $cursoGraphqlRequest = new CursoGraphqlRequest();
 
             // Define a paginacao
