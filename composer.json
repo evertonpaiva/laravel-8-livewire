@@ -16,7 +16,7 @@
         "livewire/livewire": "^2.0",
         "rennokki/laravel-eloquent-query-cache": "^2.6",
         "spatie/laravel-permission": "^4.0",
-        "ufvjm/graphql-client": "^0.0.12"
+        "ufvjm/graphql-client": "^0.0.13"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
