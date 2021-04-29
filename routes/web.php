@@ -22,6 +22,12 @@ Route::group(['middleware' => [
         return view('dashboard');
     })->name('dashboard');
 
+    Route::group(['middleware' => ['permission:importacao.list']], function () {
+        Route::get('/importacoes', function () {
+            return view('admin.importacoes');
+        })->name('importacoes');
+    });
+
     Route::group(['middleware' => ['permission:user.list']], function () {
         Route::get('/users', function () {
             return view('admin.users');
