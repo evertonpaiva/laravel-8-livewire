@@ -5,8 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\Importacao;
 use App\Models\Modalidade;
 use App\Models\Disciplina;
+use App\Models\TipoCurso;
 use App\Jobs\ImportDisciplina;
 use App\Jobs\ImportModalidadeCurso;
+use App\Jobs\ImportTipoCurso;
 
 /**
  * Class Users
@@ -124,6 +126,11 @@ class Importacoes extends ComponentCrud
             $this->validate();
             $importacao = Importacao::create($this->modelData());
             ImportModalidadeCurso::dispatch($importacao, $this->modelType);
+        } elseif ($this->type == 'tipocurso') {
+            $this->modelType = TipoCurso::class;
+            $this->validate();
+            $importacao = Importacao::create($this->modelData());
+            ImportTipoCurso::dispatch($importacao, $this->modelType);
         } elseif ($this->type == 'disciplina') {
             $this->modelType = Disciplina::class;
             $this->validate();
