@@ -14,6 +14,15 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        //
+    }
+
+    /**
+     * Cria 1000 usuários com perfils aleatórios
+     * @throws \Exception
+     */
+    public function randomUsers()
+    {
         // numero de usuarios
         $newUsers = 1000;
 

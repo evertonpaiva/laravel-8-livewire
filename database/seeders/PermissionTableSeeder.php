@@ -17,6 +17,9 @@ class PermissionTableSeeder extends Seeder
         $permissions = [
             'dashboard.list',
 
+            'importacao.list',
+            'importacao.create',
+
             'user.list',
             'user.create',
             'user.edit',

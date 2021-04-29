@@ -24,11 +24,21 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'dashboard.list',
         ]);
 
+        //importacoes
+        NavigationMenu::create([
+            'label' => 'Importações',
+            'slug' => 'importacoes',
+            'sequence' => '2',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-download',
+            'permission' => 'importacao.list',
+        ]);
+
         //users
         NavigationMenu::create([
             'label' => 'Usuários',
             'slug' => 'users',
-            'sequence' => '2',
+            'sequence' => '3',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-user-friends',
             'permission' => 'user.list',
@@ -38,7 +48,7 @@ class NavigationMenuSeeder extends Seeder
         NavigationMenu::create([
             'label' => 'Menus de navegação',
             'slug' => 'navigation-menus',
-            'sequence' => '3',
+            'sequence' => '4',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-bars',
             'permission' => 'navigation-menu.list',
@@ -48,7 +58,7 @@ class NavigationMenuSeeder extends Seeder
         NavigationMenu::create([
             'label' => 'Permissões por perfil',
             'slug' => 'user-permissions',
-            'sequence' => '4',
+            'sequence' => '5',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-user-lock',
             'permission' => 'user-permission.list',
@@ -58,7 +68,7 @@ class NavigationMenuSeeder extends Seeder
         NavigationMenu::create([
             'label' => 'Pessoas',
             'slug' => 'pessoas',
-            'sequence' => '5',
+            'sequence' => '6',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-users',
             'permission' => 'pessoa.list',
@@ -68,7 +78,7 @@ class NavigationMenuSeeder extends Seeder
         NavigationMenu::create([
             'label' => 'Cursos',
             'slug' => 'cursos',
-            'sequence' => '6',
+            'sequence' => '7',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-graduation-cap',
             'permission' => 'curso.list',
@@ -78,7 +88,7 @@ class NavigationMenuSeeder extends Seeder
         NavigationMenu::create([
             'label' => 'Sair',
             'slug' => 'logout',
-            'sequence' => '7',
+            'sequence' => '8',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-sign-out-alt',
             'permission' => 'logout.do',
