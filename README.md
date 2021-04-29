@@ -22,7 +22,8 @@ Integração com os microsserviços de UFVJM.
     * [Instalação](#instalação)
         * [Iniciar os serviços](#iniciar-os-serviços)
         * [BrowserSync](#browsersync)
-        * [Recontruir os serviços](#recontruir-os-serviços)
+        * [Processar a fila de <em>jobs</em>](#processar-a-fila-de-jobs)
+        * [Reconstruir os serviços](#reconstruir-os-serviços)
         * [Criar/Atualizar banco de dados](#criaratualizar-banco-de-dados)
         * [Parar os serviços](#parar-os-serviços)
     * [Referências](#referências)
@@ -212,8 +213,15 @@ sail npm run watch
 
 Acessar o ambiente através da URL fornecida no campo `External` (Ex: http://172.25.0.6:8090).
 
+### Processar a fila de _jobs_
 
-### Recontruir os serviços
+Processar a fila de _jobs_ do servidor:
+
+```shell
+sail artisan queue:work
+```
+
+### Reconstruir os serviços
 
 Caso seja necessário reconstruir a imagem docker e subir os serviços novamente:
 
