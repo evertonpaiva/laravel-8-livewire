@@ -9,9 +9,33 @@
     {{-- Search --}}
     <div class="flex flex-row mt-5 mb-5">
         <div class="block text-sm">
-            <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
-            <x-jet-input id="searchTerm" wire:model.debounce.500ms="searchTerm" wire:loading.class.delay="opacity-50" type="text" placeholder="Nome do curso" autofocus />
-            <x-jet-input-error for="searchTerm" class="mt-2" />
+            <div class="mb-4">
+                <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
+                <x-jet-input id="searchTerm" wire:model.debounce.500ms="searchTerm" wire:loading.class.delay="opacity-50" type="text" placeholder="Nome do curso" autofocus />
+                <x-jet-input-error for="searchTerm" class="mt-2" />
+            </div>
+            <div class="mb-4">
+                <x-jet-label for="idmodalidade" value="{{ __('Modalidade') }}" />
+                <select wire:model="idmodalidade" wire:loading.class.delay="opacity-50" class="block appearance-none w-full bg-gray-100 border border-gray-200
+                text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="">-- Todas --</option>
+                    @foreach($modalidades as $k => $v)
+                        <option value="{{ $k }}">{{ $v }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="idmodalidade" class="mt-2" />
+            </div>
+            <div class="mb-4">
+                <x-jet-label for="idtipocurso" value="{{ __('Tipo de Curso') }}" />
+                <select wire:model="idtipocurso" wire:loading.class.delay="opacity-50" class="block appearance-none w-full bg-gray-100 border border-gray-200
+                text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="">-- Todos --</option>
+                    @foreach($tiposCurso as $k => $v)
+                        <option value="{{ $k }}">{{ $v }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="idtipocurso" class="mt-2" />
+            </div>
         </div>
     </div>
 
@@ -26,8 +50,8 @@
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">Curso</th>
                     <th class="px-4 py-3">Nome</th>
-                    <th class="px-4 py-3">Tipo de curso</th>
                     <th class="px-4 py-3">Modalidade</th>
+                    <th class="px-4 py-3">Tipo de curso</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -40,10 +64,10 @@
                                 {{ $item->node->nome }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $item->node->objTipoCurso->tipocurso }}
+                                {{ $item->node->objModalidade->modalidade }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $item->node->objModalidade->modalidade }}
+                                {{ $item->node->objTipoCurso->tipocurso }}
                             </td>
                         </tr>
                     @empty

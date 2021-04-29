@@ -104,6 +104,7 @@
                     <option value="modalidade">Modalidades de Curso</option>
                     <option value="tipocurso">Tipos de Curso</option>
                     <option value="disciplina">Disciplinas</option>
+                    <option value="departamento">Departamentos</option>
                 </select>
                 <x-jet-input-error for="type" class="mt-2" />
             </div>
