@@ -37,14 +37,14 @@ fi
 
 echo -e "Cobertura de código: ${COVERAGE}%."
 
+echo -e "\nCorrigindo permissão na pasta do relatorio de cobertura de codigo"
+sudo chown -R $USER:$USER ./coverage ${PHPUNIT_LOG_FILE}
+
 if (( ! $(echo "$COVERAGE > $MINIMUM_CODE_COVERAGE" | bc -l) )); then
-    echo -e "Percentual minimo de cobertura de codigo nao atingida: ${MINIMUM_CODE_COVERAGE}%."
+    echo -e "\nPercentual minimo de cobertura de codigo nao atingida: ${MINIMUM_CODE_COVERAGE}%."
     echo -e "Falha no percentual minimo de cobertura de codigo!"
     exit 1
 fi
-
-echo -e "\nCorrigindo permissão na pasta do relatorio de cobertura de codigo"
-sudo chown -R $USER:$USER ./coverage ${PHPUNIT_LOG_FILE}
 
 echo -e "\nConfira a pasta 'coverage' para relatorio de cobertura de codigo, abrir index.html com o navegador"
 
