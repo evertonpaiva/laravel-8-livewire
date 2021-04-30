@@ -13,5 +13,12 @@ class Departamento extends Model
 
     public $incrementing = false;
 
+    protected $keyType = 'string';
+
     protected $fillable = [ 'iddepto', 'depto', 'nome'];
+
+    public function disciplinas()
+    {
+        return $this->hasMany(Disciplina::class, 'iddepto', 'iddepto');
+    }
 }

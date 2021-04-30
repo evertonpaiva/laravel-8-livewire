@@ -14,6 +14,8 @@ class TipoCurso extends Model
 
     protected $primaryKey = 'idtipocurso';
 
+    protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $fillable = [ 'idtipocurso', 'tipocurso'];
