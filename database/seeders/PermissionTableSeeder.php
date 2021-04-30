@@ -39,6 +39,8 @@ class PermissionTableSeeder extends Seeder
 
             'curso.list',
 
+            'disciplina.list',
+
             'logout.do',
         ];
 

@@ -74,7 +74,7 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'pessoa.list',
         ]);
 
-        //cursor
+        //curso
         NavigationMenu::create([
             'label' => 'Cursos',
             'slug' => 'cursos',
@@ -84,11 +84,21 @@ class NavigationMenuSeeder extends Seeder
             'permission' => 'curso.list',
         ]);
 
+        //disciplina
+        NavigationMenu::create([
+            'label' => 'Disciplinas',
+            'slug' => 'disciplinas',
+            'sequence' => '8',
+            'type' => 'SidebarNav',
+            'icon' => 'fas fa-book-reader',
+            'permission' => 'disciplina.list',
+        ]);
+
         //logout
         NavigationMenu::create([
             'label' => 'Sair',
             'slug' => 'logout',
-            'sequence' => '8',
+            'sequence' => '9',
             'type' => 'SidebarNav',
             'icon' => 'fas fa-sign-out-alt',
             'permission' => 'logout.do',

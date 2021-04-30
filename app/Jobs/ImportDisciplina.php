@@ -34,6 +34,7 @@ class ImportDisciplina extends ImportIntegracao
                     Disciplina::create([
                         'disciplina' => $disciplina->node->disciplina,
                         'nome' => $disciplina->node->nome,
+                        'iddepto' => $disciplina->node->iddepto
                     ]);
                     $this->importados++;
                 } else {

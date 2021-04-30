@@ -52,6 +52,12 @@ Route::group(['middleware' => [
         })->name('cursos');
     });
 
+    Route::group(['middleware' => ['permission:disciplina.list']], function () {
+        Route::get('/disciplinas', function () {
+            return view('admin.disciplinas');
+        })->name('disciplinas');
+    });
+
     Route::group(['middleware' => ['permission:user-permission.list']], function () {
         Route::get('/user-permissions', function () {
             return view('admin.user-permissions');

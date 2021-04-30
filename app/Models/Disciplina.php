@@ -13,5 +13,15 @@ class Disciplina extends Model
 
     public $incrementing = false;
 
-    protected $fillable = [ 'disciplina', 'nome'];
+    protected $keyType = 'string';
+
+    protected $fillable = [ 'disciplina', 'nome', 'iddepto'];
+
+    /**
+     * Recupera o Departamento da Disciplina
+     */
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'iddepto', 'iddepto');
+    }
 }
