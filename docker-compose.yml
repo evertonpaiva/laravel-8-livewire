@@ -10,8 +10,8 @@ services:
         ports:
             - '${APP_PORT:-80}:80'
         environment:
-            WWWUSER: 'www-data'
-            WWWGROUP: 'www-data'
+            WWWUSER: 'apache'
+            WWWGROUP: 'apache'
             LARAVEL_SAIL: 1
         volumes:
           - '.:/app'
