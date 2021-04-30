@@ -1,6 +1,6 @@
 FROM hub.dds.ufvjm.edu.br/desenvolvimento/laravel-alpine-php8:latest
 
-RUN adduser -S sail -G www-data -u 1000
+RUN adduser -S sail -G apache -u 1000
 
 # instalando node e npm
 RUN apk add --update \
