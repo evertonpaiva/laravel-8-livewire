@@ -96,12 +96,6 @@ class Pessoas extends ComponentCrud
      */
     public function modelData()
     {
-        return [
-            'nome' => $this->nome,
-            'cpf' => $this->cpf,
-            'idpessoa' => $this->idpessoa,
-            'containstitucional' => $this->containstitucional,
-        ];
     }
 
     /**
