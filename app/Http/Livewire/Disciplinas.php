@@ -38,10 +38,6 @@ class Disciplinas extends ComponentCrud
      */
     public function modelData()
     {
-        return [
-            'disciplina' => $this->disciplina,
-            'nome' => $this->nome,
-        ];
     }
 
     /**
@@ -104,10 +100,5 @@ class Disciplinas extends ComponentCrud
     public function getDefaultView()
     {
         return 'livewire.disciplinas';
-    }
-
-    public function closeUpdateModal()
-    {
-        $this->modalFormVisible = false;
     }
 }
