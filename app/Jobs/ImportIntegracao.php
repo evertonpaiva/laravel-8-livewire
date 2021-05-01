@@ -28,7 +28,7 @@ abstract class ImportIntegracao implements ShouldQueue
      * Tamanho máximo da paginação das requisicoes
      * @var int
      */
-    public static int $TAM_MAX_PAGINACAO = 50;
+    public static int $TAM_MAX_PAGINACAO = 100;
 
     /**
      * Intervalo entre as requisições, em segundos
