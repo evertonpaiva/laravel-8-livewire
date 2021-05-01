@@ -39,14 +39,6 @@ class Importacoes extends ComponentCrud
      */
     public function loadModel()
     {
-        $data = Importacao::find($this->modelId);
-        $this->modelType = $data->model_type;
-        $this->started = $data->started;
-        $this->success = $data->success;
-        $this->requisicoes = $data->requisicoes;
-        $this->processados = $data->processados;
-        $this->importados = $data->importados;
-        $this->ignorados = $data->ignorados;
     }
 
     /**
