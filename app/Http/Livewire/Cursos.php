@@ -44,10 +44,6 @@ class Cursos extends ComponentCrud
      */
     public function modelData()
     {
-        return [
-            'curso' => $this->curso,
-            'nome' => $this->nome,
-        ];
     }
 
     /**
@@ -150,10 +146,5 @@ class Cursos extends ComponentCrud
     public function getDefaultView()
     {
         return 'livewire.cursos';
-    }
-
-    public function closeUpdateModal()
-    {
-        $this->modalFormVisible = false;
     }
 }
