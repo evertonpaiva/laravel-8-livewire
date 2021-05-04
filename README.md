@@ -25,6 +25,7 @@ Integração com os microsserviços de UFVJM.
         * [Processar a fila de <em>jobs</em>](#processar-a-fila-de-jobs)
         * [Reconstruir os serviços](#reconstruir-os-serviços)
         * [Criar/Atualizar banco de dados](#criaratualizar-banco-de-dados)
+        * [Corrigir permissões nos arquivos](#corrigir-permissões-nos-arquivos)
         * [Parar os serviços](#parar-os-serviços)
     * [Referências](#referências)
         * [Laravel](#laravel)
@@ -35,6 +36,7 @@ Integração com os microsserviços de UFVJM.
             * [Criar usuário admin:](#criar-usuário-admin)
         * [Laravel Eloquent Query Cache](#laravel-eloquent-query-cache)
         * [Rebrow - Python-Flask-based Browser for Redis Content](#rebrow---python-flask-based-browser-for-redis-content)
+        * [Livewire Select](#livewire-select)
     * [Tutoriais](#tutoriais)
         * [Laravel 8 - Limewire - Building a Simple CMS](#laravel-8---limewire---building-a-simple-cms)
         * [Laravel 8 - Jetstream - CRUD com TDD](#laravel-8---jetstream---crud-com-tdd)
@@ -241,6 +243,15 @@ Criar ou autalizar a estrutura do banco do dados e fornecer os dados iniciais:
 sail artisan migrate:refresh --seed
 ```
 
+### Corrigir permissões nos arquivos
+
+```shell
+echo -e "\nCorrigindo permissões na pasta da aplicação"
+sudo chown "${USER}":101 -R .
+sudo chown 1000:101 -R storage coverage bootstrap/cache
+sudo chmod g+w -R storage coverage bootstrap/cache
+```
+
 ### Parar os serviços
 
 ```shell
@@ -297,6 +308,12 @@ Adiciona as funcionalidades de cache diretamente a nível de Eloquent, usando ca
 Ferramenta gráfica para visualização do conteúdo do Redis
 
 [github.com/marians/rebrow](https://github.com/marians/rebrow)
+
+### Livewire Select
+
+Selection com busca dinâmica
+
+[Livewire Select](https://github.com/asantibanez/livewire-select)
 
 ## Tutoriais
 
