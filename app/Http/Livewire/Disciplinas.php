@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Disciplina;
-use App\Models\Departamento;
 
 /**
  * Class Users
@@ -18,7 +17,11 @@ class Disciplinas extends ComponentCrud
     public $disciplina;
     public $nome;
     public $iddepto;
-    public $departamentos = [];
+    public $buscaDepartamento = false;
+
+    protected $listeners = [
+        'departamentoSelected' => 'setDepartamento'
+    ];
 
     /**
      * Loads the model data
@@ -56,11 +59,6 @@ class Disciplinas extends ComponentCrud
      */
     public function read()
     {
-        $this->departamentos = Departamento::query()
-            ->orderBy('nome')
-            ->get()
-            ->toArray();
-
         $query = '%' . trim($this->searchTerm) . '%';
 
         $disciplinas = Disciplina::with('departamento')
@@ -100,5 +98,10 @@ class Disciplinas extends ComponentCrud
     public function getDefaultView()
     {
         return 'livewire.disciplinas';
+    }
+
+    public function setDepartamento($iddepto)
+    {
+        $this->iddepto = $iddepto;
     }
 }
