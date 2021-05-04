@@ -7,7 +7,7 @@
     @include('layouts.flash-messages')
 
     {{-- Search --}}
-    <div class="flex flex-row mt-5 mb-5">
+    <div class="mt-5 mb-5">
         <div class="block text-sm">
             <div class="mb-4">
                 <x-jet-label for="searchTerm" value="{{ __('Busca') }}" />
@@ -16,14 +16,16 @@
             </div>
             <div class="mb-4">
                 <x-jet-label for="iddepto" value="{{ __('Departamento') }}" />
-                <select wire:model="iddepto" wire:loading.class.delay="opacity-50" class="block appearance-none w-full bg-gray-100 border border-gray-200
-                text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    <option value="">-- Todos --</option>
-                    @foreach($departamentos as $departamento)
-                        <option value="{{ $departamento['iddepto'] }}">{{ $departamento['nome'] }} ({{ $departamento['depto'] }})</option>
-                    @endforeach
-                </select>
-                <x-jet-input-error for="iddepto" class="mt-2" />
+                <div class="mb-2">
+                    <livewire:selections.departamento-select
+                        name="iddepto"
+                        :value="$iddepto"
+                        placeholder="Busca de Departamentos"
+                        :searchable="$buscaDepartamento"
+                        key="{{ now() }}"
+                    />
+                    <x-circle-icon-button icon="{{ $buscaDepartamento ? 'fas fa-list' : 'fas fa-search' }}" wire:click="$toggle('buscaDepartamento')" wire:loading.attr="disabled" />
+                </div>
             </div>
         </div>
     </div>
