@@ -23,10 +23,12 @@ if (Session::get('info')){
     <div class="fixed inset-x-0 bottom-0.5 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-50">
         <div
             x-data="{ show: false }"
-            x-init="() => {
-            setTimeout(() => show = true, 500);
-            setTimeout(() => show = false, {{ $n->duration }}000);
-          }"
+            x-init="
+                () => {
+                    setTimeout(() => show = true, 500);
+                    setTimeout(() => show = false, {{ $n->duration }}000);
+                }
+            "
             x-show="show"
             x-description="Notification panel, show/hide based on alert state."
             @click.away="show = false"
@@ -56,6 +58,30 @@ if (Session::get('info')){
                     </div>
                 </div>
             </div>
+
+            {{-- Barra de progresso --}}
+            <div class="h-2 relative max-w-xl mb-1">
+                <div class="w-full h-full absolute "></div>
+                <div
+                    x-data="{ progress: 100, invervalSpeed: {{ $n->duration-1 }}0, incrementSpeed: -1 }"
+                    x-init="
+                                () => {
+                                    let bar = document.getElementById('bar');
+                                    progressInterval = setInterval(function(){
+                                            progress += incrementSpeed;
+                                            bar.style.width = progress + '%';
+                                            if(progress <= 0){
+                                                clearInterval(progressInterval);
+                                            }
+                                        }, invervalSpeed);
+                                    }
+                            "
+                    id="bar"
+                    class="transition-all ease-out duration-1000 h-full bg-{{ $n->color }}-400 relative"
+                >
+                </div>
+            </div>
+
         </div>
     </div>
 @endforeach
